@@ -1,0 +1,57 @@
+{
+  "exemplo": true,
+  "nome": "Berimbau Gourmet",
+  "slogan": "Sabores que contam histórias.",
+  "descricao": "Gastronomia, tradição e uma experiência especial no coração de Ilhéus.",
+  "segmentos": ["Cafeteria", "Lanchonete", "Restaurante"],
+  "endereco": {
+    "rua": "Rua Marquês de Paranaguá, 135",
+    "bairro": "Centro",
+    "cidade": "Ilhéus",
+    "uf": "BA",
+    "cep": "45653-000"
+  },
+  "geo": { "lat": -14.7937, "lng": -39.0463 },
+  "referencia": "No centro histórico, a poucos passos da Catedral de São Sebastião.",
+  "telefone": "+55 73 3000-0000",
+  "whatsapp": "5573900000000",
+  "instagram": "https://www.instagram.com/berimbaugourmet/",
+  "ifood": "https://www.ifood.com.br/busca?q=berimbau%20gourmet",
+  "maps": "https://www.google.com/maps/search/?api=1&query=Berimbau+Gourmet+Rua+Marqu%C3%AAs+de+Paranagu%C3%A1+135+Ilh%C3%A9us+BA",
+  "avaliacao": { "nota": 4.5, "total": "+ de mil", "fonte": "Google" },
+  "seguidores": "11,3 mil",
+  "fuso": "America/Bahia",
+  "horarios": {
+    "seg": [["07:00", "19:00"]],
+    "ter": [["07:00", "19:00"]],
+    "qua": [["07:00", "19:00"]],
+    "qui": [["07:00", "19:00"]],
+    "sex": [["07:00", "20:00"]],
+    "sab": [["07:30", "20:00"]],
+    "dom": [["08:00", "14:00"]]
+  },
+  "pix": {
+    "chave": "pix@berimbaugourmet.com.br",
+    "nome": "BERIMBAU GOURMET",
+    "cidade": "ILHEUS"
+  },
+  "pagamentos": ["pix", "cartao", "dinheiro"],
+  "retirada": { "ativa": true, "tempo": "15-20 min" },
+  "entrega": {
+    "ativa": true,
+    "pedidoMinimo": 25,
+    "bairros": [
+      { "nome": "Centro", "taxa": 4, "tempo": "20-30 min" },
+      { "nome": "Cidade Nova", "taxa": 5, "tempo": "25-35 min" },
+      { "nome": "Malhado", "taxa": 6, "tempo": "30-40 min" },
+      { "nome": "Pontal", "taxa": 7, "tempo": "30-45 min" },
+      { "nome": "Conquista", "taxa": 6, "tempo": "30-40 min" },
+      { "nome": "São Francisco", "taxa": 7, "tempo": "35-45 min" },
+      { "nome": "Nossa Senhora da Vitória", "taxa": 8, "tempo": "35-50 min" }
+    ]
+  },
+  "cupons": [
+    { "codigo": "BEMVINDO", "tipo": "percentual", "valor": 5, "descricao": "5% de desconto pedindo pelo site" },
+    { "codigo": "PAODEQUEIJO", "tipo": "fixo", "valor": 6.5, "minimo": 40, "descricao": "Um pão de queijo por nossa conta em pedidos acima de R$ 40" }
+  ]
+}

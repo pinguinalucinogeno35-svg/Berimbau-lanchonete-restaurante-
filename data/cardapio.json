@@ -1,0 +1,54 @@
+{
+  "exemplo": true,
+  "atualizado": "2026-10-23",
+  "periodos": [
+    { "id": "cafe", "nome": "Café da manhã", "inicio": "07:00", "fim": "11:00", "icone": "xicara", "chamada": "Energia e tradição para começar bem." },
+    { "id": "almoco", "nome": "Almoço", "inicio": "11:00", "fim": "15:00", "icone": "talheres", "chamada": "Sabores completos no coração de Ilhéus." },
+    { "id": "tarde", "nome": "Lanche da tarde", "inicio": "15:00", "fim": "23:59", "icone": "pao-de-queijo", "chamada": "A pausa perfeita para qualquer hora." }
+  ],
+  "categorias": [
+    { "id": "cafes", "nome": "Cafés e chocolates", "icone": "xicara" },
+    { "id": "salgados", "nome": "Salgados", "icone": "pao-de-queijo" },
+    { "id": "lanches", "nome": "Lanches", "icone": "lanche" },
+    { "id": "pratos", "nome": "Pratos", "icone": "prato-quente" },
+    { "id": "doces", "nome": "Doces", "icone": "bolo" },
+    { "id": "bebidas", "nome": "Sucos e bebidas", "icone": "copo-suco" }
+  ],
+  "itens": [
+    { "id": "expresso", "nome": "Café expresso", "descricao": "Blend da casa, extração curta e encorpada.", "categoria": "cafes", "periodos": ["cafe", "tarde"], "preco": 6, "selos": [], "variacoes": [{ "nome": "Simples", "preco": 0 }, { "nome": "Duplo", "preco": 4 }] },
+    { "id": "cappuccino", "nome": "Cappuccino Berimbau", "descricao": "Expresso, leite vaporizado e cacau do sul da Bahia polvilhado.", "categoria": "cafes", "periodos": ["cafe", "tarde"], "preco": 12, "foto": "assets/fotos/cafe-da-manha.webp", "selos": ["mais-pedido"], "destaque": true },
+    { "id": "cafe-com-leite", "nome": "Café com leite", "descricao": "Na xícara grande, do jeito de casa.", "categoria": "cafes", "periodos": ["cafe", "tarde"], "preco": 8, "selos": [] },
+    { "id": "chocolate-quente", "nome": "Chocolate quente de cacau", "descricao": "Feito com cacau da região, cremoso e pouco doce.", "categoria": "cafes", "periodos": ["cafe", "tarde"], "preco": 14, "selos": ["da-regiao"] },
+
+    { "id": "pao-de-queijo", "nome": "Pão de queijo", "descricao": "O famoso da casa, gratinado e saindo do forno.", "categoria": "salgados", "periodos": ["cafe", "tarde"], "preco": 6.5, "foto": "assets/fotos/pao-de-queijo-cafe.webp", "selos": ["mais-pedido", "vegetariano"], "destaque": true, "adicionais": [{ "nome": "Recheio de requeijão", "preco": 3 }, { "nome": "Recheio de carne do sol", "preco": 5 }] },
+    { "id": "coxinha", "nome": "Coxinha de frango", "descricao": "Massa leve, recheio de frango desfiado com catupiry.", "categoria": "salgados", "periodos": ["cafe", "tarde"], "preco": 8, "selos": [] },
+    { "id": "empada", "nome": "Empada de camarão", "descricao": "Massa amanteigada que desmancha, camarão refogado.", "categoria": "salgados", "periodos": ["tarde"], "preco": 10, "selos": ["da-regiao"] },
+    { "id": "pastel-forno", "nome": "Pastel de forno de carne", "descricao": "Carne moída temperada, azeitona e ovo.", "categoria": "salgados", "periodos": ["cafe", "tarde"], "preco": 8.5, "selos": [] },
+
+    { "id": "misto-quente", "nome": "Misto quente na chapa", "descricao": "Pão de forma, presunto e queijo derretido.", "categoria": "lanches", "periodos": ["cafe", "tarde"], "preco": 12, "selos": [], "adicionais": [{ "nome": "Ovo", "preco": 2.5 }, { "nome": "Tomate", "preco": 1.5 }] },
+    { "id": "tapioca", "nome": "Tapioca de queijo coalho", "descricao": "Goma fresquinha com queijo coalho e manteiga de garrafa.", "categoria": "lanches", "periodos": ["cafe", "tarde"], "preco": 14, "selos": ["vegetariano"], "adicionais": [{ "nome": "Coco ralado", "preco": 2 }, { "nome": "Carne do sol", "preco": 6 }] },
+    { "id": "sanduiche-natural", "nome": "Sanduíche natural", "descricao": "Pão integral, frango, cenoura, alface e creme de ricota.", "categoria": "lanches", "periodos": ["cafe", "almoco", "tarde"], "preco": 16, "selos": [] },
+    { "id": "x-berimbau", "nome": "X-Berimbau", "descricao": "Hambúrguer artesanal 150 g, queijo, bacon e molho da casa.", "categoria": "lanches", "periodos": ["almoco", "tarde"], "preco": 28, "selos": ["mais-pedido"], "adicionais": [{ "nome": "Bacon extra", "preco": 4 }, { "nome": "Ovo", "preco": 2.5 }, { "nome": "Batata frita pequena", "preco": 9 }] },
+
+    { "id": "parmegiana", "nome": "Frango à parmegiana", "descricao": "Acompanha arroz, feijão tropeiro e salada da casa.", "categoria": "pratos", "periodos": ["almoco"], "preco": 39, "foto": "assets/fotos/almoco-parmegiana.webp", "selos": ["mais-pedido"], "destaque": true },
+    { "id": "carne-do-sol", "nome": "Carne do sol com aipim", "descricao": "Carne do sol na manteiga de garrafa, aipim frito e vinagrete.", "categoria": "pratos", "periodos": ["almoco"], "preco": 46, "selos": ["da-regiao"] },
+    { "id": "moqueca", "nome": "Moqueca de peixe", "descricao": "No dendê e leite de coco, com arroz e pirão. Serve 1 pessoa.", "categoria": "pratos", "periodos": ["almoco"], "preco": 54, "selos": ["da-regiao"] },
+    { "id": "prato-do-dia", "nome": "Prato do dia", "descricao": "Pergunte a opção de hoje: proteína, arroz, feijão e salada.", "categoria": "pratos", "periodos": ["almoco"], "preco": 29, "selos": [] },
+    { "id": "salada-completa", "nome": "Salada completa", "descricao": "Folhas, legumes grelhados, queijo branco e molho de mostarda e mel.", "categoria": "pratos", "periodos": ["almoco"], "preco": 32, "selos": ["vegetariano"], "adicionais": [{ "nome": "Frango grelhado", "preco": 8 }] },
+
+    { "id": "bolo-cacau", "nome": "Bolo de cacau", "descricao": "Fatia de bolo úmido com cobertura de chocolate da região.", "categoria": "doces", "periodos": ["cafe", "tarde"], "preco": 13, "selos": ["da-regiao"] },
+    { "id": "torta-morango", "nome": "Torta de morango", "descricao": "Massa de baunilha, creme e morangos frescos.", "categoria": "doces", "periodos": ["tarde"], "preco": 16, "selos": [] },
+    { "id": "cocada", "nome": "Cocada de forno", "descricao": "Coco fresco, dourada por cima e cremosa por dentro.", "categoria": "doces", "periodos": ["almoco", "tarde"], "preco": 8, "selos": ["vegetariano"] },
+
+    { "id": "suco-natural", "nome": "Suco natural", "descricao": "Feito na hora. Escolha a fruta.", "categoria": "bebidas", "periodos": ["cafe", "almoco", "tarde"], "preco": 10, "foto": "assets/fotos/lanche-da-tarde.webp", "selos": [], "destaque": true, "variacoes": [{ "nome": "Morango", "preco": 0 }, { "nome": "Laranja", "preco": 0 }, { "nome": "Cacau", "preco": 2 }, { "nome": "Cajá", "preco": 0 }] },
+    { "id": "agua-coco", "nome": "Água de coco", "descricao": "Gelada, direto do coco.", "categoria": "bebidas", "periodos": ["cafe", "almoco", "tarde"], "preco": 8, "selos": ["da-regiao"] },
+    { "id": "refrigerante", "nome": "Refrigerante lata", "descricao": "350 ml.", "categoria": "bebidas", "periodos": ["almoco", "tarde"], "preco": 7, "selos": [], "disponivel": false },
+    { "id": "agua", "nome": "Água mineral", "descricao": "500 ml, com ou sem gás.", "categoria": "bebidas", "periodos": ["cafe", "almoco", "tarde"], "preco": 4.5, "selos": [] }
+  ],
+  "selos": {
+    "mais-pedido": "Mais pedido",
+    "vegetariano": "Vegetariano",
+    "da-regiao": "Da região",
+    "novo": "Novo"
+  }
+}

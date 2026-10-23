@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Berimbau Gourmet | Café, lanches e almoço no centro de Ilhéus</title>
+  <meta name="description" content="Cafeteria, lanchonete e restaurante no centro histórico de Ilhéus. Veja o cardápio, peça pelo site sem taxa de app ou pelo iFood.">
+  <meta name="theme-color" content="#B25929">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="assets/app/favicon-48.png" sizes="48x48">
+  <link rel="icon" href="assets/app/icon-192.png" sizes="192x192">
+  <link rel="apple-touch-icon" href="assets/app/apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Berimbau">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+
+  <meta property="og:type" content="restaurant">
+  <meta property="og:title" content="Berimbau Gourmet – Sabores que contam histórias">
+  <meta property="og:description" content="Cafeteria, lanchonete e restaurante no coração de Ilhéus.">
+  <meta property="og:image" content="assets/app/og-image.jpg">
+  <meta property="og:locale" content="pt_BR">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Montserrat:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="assets/tokens.css">
+  <link rel="stylesheet" href="src/styles/app.css">
+  <link rel="preload" href="data/cardapio.json" as="fetch" crossorigin>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": ["Restaurant", "CafeOrCoffeeShop"],
+    "name": "Berimbau Gourmet",
+    "description": "Cafeteria, lanchonete e restaurante no centro histórico de Ilhéus.",
+    "url": "https://berimbaugourmet.com.br/",
+    "image": "https://berimbaugourmet.com.br/assets/app/og-image.jpg",
+    "servesCuisine": ["Brasileira", "Baiana", "Cafeteria", "Lanches"],
+    "priceRange": "$$",
+    "hasMenu": "https://berimbaugourmet.com.br/#/cardapio",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Rua Marquês de Paranaguá, 135",
+      "addressLocality": "Ilhéus",
+      "addressRegion": "BA",
+      "addressCountry": "BR"
+    },
+    "geo": { "@type": "GeoCoordinates", "latitude": -14.7937, "longitude": -39.0463 },
+    "aggregateRating": { "@type": "AggregateRating", "ratingValue": 4.5, "reviewCount": 1000 },
+    "sameAs": ["https://www.instagram.com/berimbaugourmet/"]
+  }
+  </script>
+</head>
+<body>
+  <div id="sprite" hidden></div>
+  <a class="pular" href="#app">Pular para o conteúdo</a>
+
+  <header class="topo">
+    <a class="topo-logo" href="#/" aria-label="Berimbau Gourmet, início">
+      <img src="assets/marca/logo-berimbau-completo.svg" alt="" width="160" height="53">
+    </a>
+    <nav class="topo-nav" aria-label="Principal">
+      <a href="#/" data-nav="">Início</a>
+      <a href="#/cardapio" data-nav="cardapio">Cardápio</a>
+      <a href="#/historia" data-nav="historia">Nossa história</a>
+      <a href="#/como-chegar" data-nav="como-chegar">Como chegar</a>
+    </nav>
+    <a class="botao topo-pedido" href="#/pedido" data-nav="pedido">
+      <svg class="icone" aria-hidden="true"><use href="#i-sacola"/></svg>Meu pedido
+      <span class="contador" data-contador hidden>0</span>
+    </a>
+  </header>
+
+  <p class="faixa-offline" role="status">Você está offline · mostrando o cardápio salvo, preços podem ter mudado.</p>
+
+  <main id="app" tabindex="-1">
+    <div class="carregando" aria-label="Carregando"></div>
+  </main>
+
+  <footer class="rodape">
+    <img src="assets/marca/logo-berimbau-completo-creme.png" alt="Berimbau Gourmet" width="150">
+    <p>Rua Marquês de Paranaguá, 135 — Centro, Ilhéus - BA</p>
+    <p><a href="#/como-chegar">Horários e contato</a> · <a href="https://www.instagram.com/berimbaugourmet/" target="_blank" rel="noopener">Instagram</a></p>
+    <p class="credito">Desenvolvido por ONE Creative Studio</p>
+  </footer>
+
+  <nav class="nav-inferior" aria-label="Navegação">
+    <a href="#/" data-nav=""><svg class="icone" aria-hidden="true"><use href="#i-inicio"/></svg>Início</a>
+    <a href="#/cardapio" data-nav="cardapio"><svg class="icone" aria-hidden="true"><use href="#i-cardapio"/></svg>Cardápio</a>
+    <a href="#/pedido" data-nav="pedido"><svg class="icone" aria-hidden="true"><use href="#i-sacola"/></svg>Pedido<span class="contador" data-contador hidden>0</span></a>
+    <a href="#/como-chegar" data-nav="como-chegar"><svg class="icone" aria-hidden="true"><use href="#i-local"/></svg>Como chegar</a>
+  </nav>
+
+  <div class="atualizacao" id="atualizacao" role="status" hidden>
+    Nova versão disponível. <button class="botao" id="atualizar">Atualizar</button>
+  </div>
+
+  <script type="module" src="src/main.js"></script>
+</body>
+</html>
