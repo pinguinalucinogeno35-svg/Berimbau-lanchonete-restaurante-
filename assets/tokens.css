@@ -1,0 +1,49 @@
+/* Berimbau Gourmet — tokens de marca (amostrados da proposta ONE; confirmar com o manual) */
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Montserrat:wght@400;500;600;700&display=swap");
+
+:root {
+  /* cores */
+  --bg-creme:      #FCF6EF;  /* fundo geral */
+  --bg-card:       #FCEFE2;  /* cartões */
+  --bg-areia:      #F2E2CF;  /* blocos de destaque */
+  --circulo-icone: #F6CEB0;  /* fundo dos ícones */
+  --terracota:     #B25929;  /* curvas, botões */
+  --terracota-txt: #AD501F;  /* títulos em cor */
+  --terracota-esc: #8F3F1F;  /* hover / pressed */
+  --marca:         #A65125;  /* cor do logo */
+  --cafe:          #23160C;  /* títulos e texto principal */
+  --sepia:         #3A2E23;  /* rótulos */
+  --sepia-claro:   #6B5546;  /* texto secundário */
+
+  /* tipografia */
+  --font-titulo: "Cormorant Garamond", Georgia, serif;
+  --font-texto:  "Montserrat", system-ui, sans-serif;
+  --fs-display: clamp(2.4rem, 6vw, 4rem);
+  --fs-h2:      clamp(1.7rem, 4vw, 2.4rem);
+  --fs-corpo:   1rem;
+  --fs-rotulo:  .75rem;   /* caixa alta, letter-spacing .14em */
+
+  /* forma */
+  --raio-sm: 10px;
+  --raio-md: 16px;
+  --raio-lg: 24px;
+  --raio-pill: 999px;
+  --sombra-card: 0 6px 24px rgba(35, 22, 12, .08);
+  --icone-traco: 1.6;
+}
+
+.icone {
+  width: 1.5em; height: 1.5em; color: var(--terracota); flex: none;
+  fill: none; stroke: currentColor; stroke-width: var(--icone-traco);
+  stroke-linecap: round; stroke-linejoin: round;
+}
+.icone-circulo {
+  display: inline-grid; place-items: center; width: 56px; height: 56px;
+  border-radius: 50%; background: var(--circulo-icone); color: var(--terracota-esc);
+}
+.botao {
+  display: inline-flex; align-items: center; gap: .75em; padding: .9em 1.6em;
+  border: 0; border-radius: var(--raio-pill); background: var(--terracota); color: #fff;
+  font: 600 1rem var(--font-texto); text-decoration: none; cursor: pointer;
+}
+.botao:hover { background: var(--terracota-esc); }
