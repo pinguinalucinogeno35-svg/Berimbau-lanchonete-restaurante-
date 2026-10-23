@@ -1,6 +1,6 @@
 // Service worker do Berimbau Gourmet.
 // Estrutura do app: cache na instalação. Fotos: cache primeiro. Dados (JSON): rede primeiro.
-const VERSAO = 'berimbau-v1';
+const VERSAO = 'berimbau-v2';
 const SHELL = `${VERSAO}-shell`;
 const FOTOS = `${VERSAO}-fotos`;
 const DADOS = `${VERSAO}-dados`;
@@ -20,10 +20,16 @@ const ARQUIVOS = [
   'src/views/enviado.js',
   'src/views/historia.js',
   'src/views/como-chegar.js',
+  'src/views/meus-pedidos.js',
+  'src/views/links.js',
+  'src/views/qr.js',
   'src/components/card-produto.js',
   'src/components/folha-item.js',
   'src/components/toast.js',
   'src/store/pedido.js',
+  'src/store/historico.js',
+  'src/services/qr.js',
+  'src/vendor/qrcode.js',
   'src/services/formato.js',
   'src/services/horario.js',
   'src/services/pix.js',

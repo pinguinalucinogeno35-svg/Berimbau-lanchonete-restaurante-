@@ -1,6 +1,6 @@
 import { brl } from './formato.js';
 
-const PAGAMENTO = { pix: 'Pix', cartao: 'Cartão na entrega/retirada', dinheiro: 'Dinheiro' };
+const PAGAMENTO = { pix: 'Pix', cartao: 'Cartão (maquininha)', dinheiro: 'Dinheiro' };
 
 export function mensagemPedido(pedido, totais, codigo) {
   const l = [];
@@ -14,7 +14,8 @@ export function mensagemPedido(pedido, totais, codigo) {
   if (totais.taxa) l.push(`Entrega (${pedido.bairro}): ${brl(totais.taxa)}`);
   if (totais.desconto) l.push(`Cupom ${pedido.cupom}: -${brl(totais.desconto)}`);
   l.push(`*Total: ${brl(totais.total)}*`, '');
-  l.push(`Recebimento: ${pedido.modo === 'entrega' ? 'Entrega' : 'Retirada no balcão'}`);
+  const recebimento = { entrega: 'Entrega', mesa: `Consumo na *mesa ${pedido.mesa}*`, retirada: 'Retirada no balcão' };
+  l.push(`Recebimento: ${recebimento[pedido.modo] || recebimento.retirada}`);
   l.push(`Pagamento: ${PAGAMENTO[pedido.pagamento] || pedido.pagamento}${pedido.pagamento === 'dinheiro' && pedido.troco ? ` (troco para ${brl(pedido.troco)})` : ''}`);
   l.push(`Cliente: ${pedido.cliente.nome} – ${pedido.cliente.telefone}`);
   if (pedido.modo === 'entrega') {

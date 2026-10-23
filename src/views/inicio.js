@@ -1,6 +1,8 @@
 import { esc, icone } from '../services/formato.js';
 import { status, periodoAtual } from '../services/horario.js';
 import { cardMini } from '../components/card-produto.js';
+import { listarPedidos } from '../store/historico.js';
+import { cartaoPedido, ligarPedirDeNovo } from './meus-pedidos.js';
 
 export const titulo = 'Café, lanches e almoço no centro de Ilhéus';
 
@@ -12,6 +14,7 @@ export function render({ loja, cardapio }) {
     .sort((a, b) => (b.destaque ? 1 : 0) - (a.destaque ? 1 : 0))
     .slice(0, 8);
   const destaques = cardapio.itens.filter((i) => i.destaque && i.disponivel !== false);
+  const ultimo = listarPedidos()[0];
 
   return `
   <section class="hero">
@@ -42,6 +45,14 @@ export function render({ loja, cardapio }) {
     <div class="carrossel" data-lista>${doPeriodo.map((i) => cardMini(i, cardapio)).join('')}</div>
     <a class="link-seta" href="#/cardapio?p=${periodo.id}">Ver tudo de ${esc(periodo.nome.toLowerCase())}<i class="seta" aria-hidden="true"></i></a>
   </section>
+
+  ${ultimo ? `
+  <section class="secao">
+    <h2>Pedir <em>de novo</em></h2>
+    <div class="div"></div>
+    ${cartaoPedido(ultimo)}
+    <a class="link-seta" href="#/meus-pedidos">Ver todos os meus pedidos<i class="seta" aria-hidden="true"></i></a>
+  </section>` : ''}
 
   <section class="secao">
     <h2>Os queridinhos <em>da casa</em></h2>
@@ -75,4 +86,8 @@ export function render({ loja, cardapio }) {
     </div>
     <button class="botao" data-instalar-botao>Instalar app</button>
   </section>`;
+}
+
+export function montar(el, { cardapio }) {
+  ligarPedirDeNovo(el, cardapio);
 }

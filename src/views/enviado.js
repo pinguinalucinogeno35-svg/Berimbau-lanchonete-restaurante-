@@ -2,6 +2,7 @@ import { brl, esc, icone } from '../services/formato.js';
 import { lerUltimo } from './pedido.js';
 import { linkWhatsApp } from '../services/whatsapp.js';
 import { toast } from '../components/toast.js';
+import { qrSvg } from '../services/qr.js';
 
 export const titulo = 'Pedido enviado';
 
@@ -18,12 +19,14 @@ export function render({ loja }) {
     <section class="bloco pix">
       <h2>${icone('pix')} Pague com Pix</h2>
       <p>Valor: <strong>${brl(u.total)}</strong></p>
+      <div class="pix-qr">${qrSvg(u.pix, { nivel: 'M', rotulo: 'QR code Pix' })}<small>Pagando de outro aparelho? Escaneie no app do banco.</small></div>
       <label class="campo"><span>Pix copia e cola</span><textarea readonly rows="4">${esc(u.pix)}</textarea></label>
       <button class="botao botao-cheio botao-largo" data-copiar>${icone('check')}Copiar código Pix</button>
       <p class="nota">Envie o comprovante na mesma conversa do WhatsApp.</p>
     </section>` : ''}
     <div class="enviado-acoes">
       <a class="botao botao-contorno" href="#/">Voltar ao início</a>
+      <a class="botao botao-contorno" href="#/meus-pedidos">${icone('relogio')}Meus pedidos</a>
       <a class="botao botao-contorno" href="#/como-chegar">${icone('local')}Como chegar</a>
     </div>
   </div>`;

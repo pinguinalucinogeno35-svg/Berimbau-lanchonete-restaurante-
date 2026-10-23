@@ -30,6 +30,29 @@ Netlify, Vercel ou GitHub Pages.
 - **SEO local**: JSON-LD `Restaurant` + `CafeOrCoffeeShop`, Open Graph com imagem.
 - **Métricas**: eventos enviados para `window.dataLayer` (`src/services/analytics.js`).
 
+## Fase 2 — o que entrou
+
+- **QR code nas mesas**: o link `#/cardapio?mesa=5` coloca o cliente na mesa 5 (faixa no topo, opção
+  "Na mesa 5" no pedido, sem endereço nem taxa; a mensagem do WhatsApp diz a mesa). Expira em 4 horas.
+- **Gerador de QR codes para imprimir**: `#/qr` (uso interno, fora do menu). Cartões da marca para
+  balcão, link da bio e cada mesa, 4 por folha A4.
+- **Pix com QR code** na tela de pedido enviado, além do copia e cola.
+- **Meus pedidos / Pedir de novo**: os últimos 10 pedidos ficam no aparelho; um toque devolve os itens
+  à sacola com os preços atuais (itens esgotados são avisados). O último pedido aparece na tela inicial.
+- **Link na bio do Instagram**: `#/links` — página própria, sem menu, com atalhos e os destaques
+  (Café, Almoço, Salgados, História, Unidade). Links profundos: `#/cardapio?p=almoco`,
+  `#/cardapio?p=tudo&c=salgados`.
+- **Origem das visitas**: `?origem=instagram`, `qr-mesa`, `qr-balcao` ficam registradas na visita e
+  vão junto em todos os eventos de métrica.
+
+### Links para usar
+
+| Onde | Link |
+|---|---|
+| Bio do Instagram | `https://berimbau-gourmet.netlify.app/#/links?origem=instagram` |
+| Gerar QR codes | `https://berimbau-gourmet.netlify.app/#/qr` |
+| Destaque "Almoço" | `https://berimbau-gourmet.netlify.app/#/cardapio?p=almoco&origem=instagram` |
+
 ## Conteúdo (o que trocar pelos dados reais)
 
 | Arquivo | O que contém |
@@ -47,10 +70,11 @@ Depois de alterar arquivos do app, aumente `VERSAO` em `sw.js` para os clientes 
 index.html · manifest.webmanifest · sw.js · offline.html
 data/            loja.json, cardapio.json
 src/main.js      roteador (hash), service worker, instalação
-src/views/       inicio, cardapio, pedido, enviado, historia, como-chegar
+src/views/       inicio, cardapio, pedido, enviado, historia, como-chegar, meus-pedidos, links, qr
 src/components/  card-produto, folha-item, toast
-src/store/       pedido.js (sacola + cliente no localStorage)
-src/services/    horario, pix, whatsapp, formato, analytics
+src/store/       pedido.js (sacola, cliente, mesa), historico.js (pedidos anteriores)
+src/services/    horario, pix, qr, whatsapp, formato, analytics
+src/vendor/      qrcode.js (qrcode-generator, MIT)
 src/styles/      app.css
 assets/          biblioteca de marca (abaixo) + assets/app (ícones do PWA, og-image)
 ```

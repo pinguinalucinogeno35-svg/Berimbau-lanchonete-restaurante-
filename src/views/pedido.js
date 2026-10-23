@@ -3,7 +3,8 @@ import { status } from '../services/horario.js';
 import { pedido, alterarQtd, atualizar, atualizarCliente, calcularTotais, limparItens } from '../store/pedido.js';
 import { mensagemPedido, linkWhatsApp } from '../services/whatsapp.js';
 import { pixCopiaECola } from '../services/pix.js';
-import { track } from '../services/analytics.js';
+import { track, origem } from '../services/analytics.js';
+import { salvarNoHistorico } from '../store/historico.js';
 
 export const titulo = 'Seu pedido';
 
@@ -17,6 +18,7 @@ function vazio() {
     <h2>Sua sacola está vazia</h2>
     <p>Escolha seus sabores no cardápio e finalize por aqui, sem taxa de app.</p>
     <a class="botao" href="#/cardapio">Ver cardápio<i class="seta" aria-hidden="true"></i></a>
+    <a class="link-seta" href="#/meus-pedidos">Pedir de novo um pedido anterior<i class="seta" aria-hidden="true"></i></a>
   </div>`;
 }
 
@@ -46,6 +48,7 @@ export function render({ loja }) {
   const st = status(loja);
   const c = pedido.cliente;
   const entrega = pedido.modo === 'entrega';
+  const naMesa = pedido.modo === 'mesa' && pedido.mesa;
   const abaixoMinimo = entrega && t.subtotal < loja.entrega.pedidoMinimo;
 
   return `
@@ -61,8 +64,9 @@ export function render({ loja }) {
 
     <section class="bloco">
       <h2>Como quer receber?</h2>
-      <div class="segmentado" role="radiogroup">
-        <label><input type="radio" name="modo" value="retirada" ${!entrega ? 'checked' : ''}>${icone('retirada')}<span>Retirar no balcão<small>${esc(loja.retirada.tempo)}</small></span></label>
+      <div class="segmentado${pedido.mesa ? ' tres' : ''}" role="radiogroup">
+        ${pedido.mesa ? `<label><input type="radio" name="modo" value="mesa" ${naMesa ? 'checked' : ''}>${icone('talheres')}<span>Na mesa ${esc(pedido.mesa)}<small>Servimos aí</small></span></label>` : ''}
+        <label><input type="radio" name="modo" value="retirada" ${pedido.modo === 'retirada' ? 'checked' : ''}>${icone('retirada')}<span>Retirar no balcão<small>${esc(loja.retirada.tempo)}</small></span></label>
         ${loja.entrega.ativa ? `<label><input type="radio" name="modo" value="entrega" ${entrega ? 'checked' : ''}>${icone('entrega')}<span>Entrega<small>Taxa por bairro</small></span></label>` : ''}
       </div>
       ${entrega ? `
@@ -75,7 +79,8 @@ export function render({ loja }) {
       </label>
       <label class="campo"><span>Endereço</span><input name="endereco" autocomplete="street-address" value="${esc(c.endereco)}" placeholder="Rua, número, complemento" required></label>
       <label class="campo"><span>Ponto de referência <small>(opcional)</small></span><input name="referencia" value="${esc(c.referencia)}"></label>
-      ${abaixoMinimo ? `<p class="aviso">Pedido mínimo para entrega: ${brl(loja.entrega.pedidoMinimo)}.</p>` : ''}` : `
+      ${abaixoMinimo ? `<p class="aviso">Pedido mínimo para entrega: ${brl(loja.entrega.pedidoMinimo)}.</p>` : ''}` : naMesa ? `
+      <p class="nota">${icone('talheres')} A equipe leva o pedido até a mesa ${esc(pedido.mesa)}.</p>` : `
       <p class="nota">${icone('local')} ${esc(loja.endereco.rua)} – ${esc(loja.endereco.bairro)}</p>`}
     </section>
 
@@ -94,7 +99,7 @@ export function render({ loja }) {
         <label><input type="radio" name="pagamento" value="dinheiro" ${pedido.pagamento === 'dinheiro' ? 'checked' : ''}>${icone('sacola')}<span>Dinheiro</span></label>
       </div>
       ${pedido.pagamento === 'dinheiro' ? `<label class="campo"><span>Troco para <small>(opcional)</small></span><input name="troco" type="number" inputmode="decimal" min="0" step="1" value="${pedido.troco || ''}"></label>` : ''}
-      ${pedido.pagamento === 'cartao' ? `<p class="nota">Maquininha na ${entrega ? 'entrega' : 'retirada'}.</p>` : ''}
+      ${pedido.pagamento === 'cartao' ? `<p class="nota">Maquininha na ${entrega ? 'entrega' : naMesa ? 'mesa' : 'retirada'}.</p>` : ''}
       ${pedido.pagamento === 'pix' ? `<p class="nota">Depois de enviar, mostramos o Pix copia e cola com o valor exato.</p>` : ''}
     </section>
 
@@ -184,7 +189,8 @@ export function montar(el, ctx) {
     try {
       localStorage.setItem(ULTIMO, JSON.stringify({ codigo, total: t.total, pix, modo: pedido.modo, pagamento: pedido.pagamento, texto }));
     } catch { /* segue sem histórico */ }
-    track('enviar_pedido_whatsapp', { total: t.total, modo: pedido.modo, pagamento: pedido.pagamento });
+    salvarNoHistorico({ codigo, itens: pedido.itens, total: t.total, modo: pedido.modo, mesa: pedido.mesa });
+    track('enviar_pedido_whatsapp', { total: t.total, modo: pedido.modo, pagamento: pedido.pagamento, mesa: pedido.mesa, origem: origem() });
     window.open(linkWhatsApp(loja.whatsapp, texto), '_blank', 'noopener');
     limparItens();
     location.hash = '#/pedido/enviado';

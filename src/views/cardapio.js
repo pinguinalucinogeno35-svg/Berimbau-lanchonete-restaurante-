@@ -47,7 +47,9 @@ export function render({ loja, cardapio, params }) {
   <p class="atualizado">Cardápio atualizado em ${new Date(cardapio.atualizado + 'T12:00').toLocaleDateString('pt-BR')}. Preços sujeitos a alteração.</p>`;
 }
 
-export function montar(el, { cardapio }) {
+export function montar(el, { cardapio, params }) {
+  const cat = params.get('c');
+  if (cat) requestAnimationFrame(() => el.querySelector(`#cat-${CSS.escape(cat)}`)?.scrollIntoView({ block: 'start' }));
   let periodo = el.querySelector('.aba[aria-selected="true"]').dataset.periodo;
   const input = el.querySelector('input[type=search]');
   const alvo = el.querySelector('.cardapio-lista');

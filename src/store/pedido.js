@@ -9,10 +9,12 @@ const gravar = (k, v) => {
   try { localStorage.setItem(k, JSON.stringify(v)); } catch { /* armazenamento indisponível */ }
 };
 
-const vazio = () => ({ itens: [], modo: 'retirada', bairro: '', cupom: '', pagamento: 'pix', troco: 0 });
+const vazio = () => ({ itens: [], modo: 'retirada', bairro: '', cupom: '', pagamento: 'pix', troco: 0, mesa: '', mesaDesde: 0 });
+const VALIDADE_MESA = 4 * 60 * 60 * 1000; // a mesa do QR code expira depois de 4 horas
 
 export const pedido = Object.assign(vazio(), ler(CHAVE, {}));
 pedido.cliente = Object.assign({ nome: '', telefone: '', endereco: '', referencia: '' }, ler(CHAVE_CLIENTE, {}));
+if (pedido.mesa && Date.now() - pedido.mesaDesde > VALIDADE_MESA) sairDaMesa(false);
 
 function salvar() {
   const { cliente, ...resto } = pedido;
@@ -54,6 +56,18 @@ export function atualizarCliente(campos) {
   salvar();
 }
 
+export function entrarNaMesa(numero) {
+  const mesa = String(numero).replace(/[^\w-]/g, '').slice(0, 12);
+  if (!mesa) return;
+  Object.assign(pedido, { mesa, mesaDesde: Date.now(), modo: 'mesa' });
+  salvar();
+}
+
+export function sairDaMesa(notificar = true) {
+  Object.assign(pedido, { mesa: '', mesaDesde: 0, modo: pedido.modo === 'mesa' ? 'retirada' : pedido.modo });
+  if (notificar) salvar();
+}
+
 export function limparItens() {
   pedido.itens = [];
   pedido.cupom = '';
@@ -63,7 +77,7 @@ export function limparItens() {
 export function calcularTotais(loja) {
   const subtotal = pedido.itens.reduce((s, i) => s + i.unitario * i.qtd, 0);
   const bairro = loja.entrega.bairros.find((b) => b.nome === pedido.bairro);
-  const taxa = pedido.modo === 'entrega' && bairro ? bairro.taxa : 0;
+  const taxa = pedido.modo === 'entrega' && bairro ? bairro.taxa : 0; // mesa e retirada não têm taxa
   const cupom = loja.cupons.find((c) => c.codigo === (pedido.cupom || '').toUpperCase());
   let desconto = 0;
   let avisoCupom = '';

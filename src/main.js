@@ -4,9 +4,12 @@ import * as pedidoView from './views/pedido.js';
 import * as enviado from './views/enviado.js';
 import * as historia from './views/historia.js';
 import * as comoChegar from './views/como-chegar.js';
+import * as meusPedidos from './views/meus-pedidos.js';
+import * as links from './views/links.js';
+import * as qr from './views/qr.js';
 import { abrirItem } from './components/folha-item.js';
-import { quantidadeTotal } from './store/pedido.js';
-import { track } from './services/analytics.js';
+import { quantidadeTotal, pedido, entrarNaMesa, sairDaMesa } from './store/pedido.js';
+import { track, registrarOrigem } from './services/analytics.js';
 
 const ROTAS = {
   '': inicio,
@@ -15,6 +18,9 @@ const ROTAS = {
   'pedido/enviado': enviado,
   historia,
   'como-chegar': comoChegar,
+  'meus-pedidos': meusPedidos,
+  links,
+  qr,
 };
 
 const app = document.getElementById('app');
@@ -35,9 +41,38 @@ function rota() {
   return { caminho: caminho.replace(/\/$/, ''), params: new URLSearchParams(query) };
 }
 
+// Parâmetros que podem vir em qualquer link: ?mesa=5 (QR da mesa) e ?origem=instagram
+function lerParametros(params) {
+  if (params.has('origem')) {
+    registrarOrigem(params.get('origem'));
+    track('chegada', { origem: params.get('origem') });
+  }
+  if (params.has('mesa') && params.get('mesa') !== pedido.mesa) {
+    entrarNaMesa(params.get('mesa'));
+    track('entrar_mesa', { mesa: pedido.mesa });
+  }
+}
+
+function atualizarFaixaMesa() {
+  const faixa = document.getElementById('faixa-mesa');
+  faixa.hidden = !pedido.mesa;
+  if (pedido.mesa) faixa.querySelector('[data-mesa]').textContent = pedido.mesa;
+}
+
+document.getElementById('sair-mesa').addEventListener('click', () => {
+  sairDaMesa();
+  const { caminho, params } = rota();
+  params.delete('mesa');
+  history.replaceState(null, '', `#/${caminho}${params.size ? `?${params}` : ''}`);
+  render({ rolarTopo: false });
+});
+
 function render({ rolarTopo = true } = {}) {
   const { caminho, params } = rota();
+  lerParametros(params);
   const view = ROTAS[caminho] || inicio;
+  document.body.classList.toggle('sem-navegacao', !!view.semNavegacao);
+  atualizarFaixaMesa();
   const c = { ...ctx, params, rerender: () => render({ rolarTopo: false }) };
   const y = scrollY;
   app.innerHTML = view.render(c);
