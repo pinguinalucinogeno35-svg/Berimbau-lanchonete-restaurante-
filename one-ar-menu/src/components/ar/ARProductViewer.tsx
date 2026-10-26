@@ -251,6 +251,9 @@ export function ARProductViewer(props: ARProductViewerProps) {
             environment-image="neutral"
             xr-environment
             camera-orbit="30deg 72deg auto"
+            min-camera-orbit="auto auto 0m"
+            min-field-of-view="6deg"
+            interpolation-decay="120"
             loading="eager"
             reveal="auto"
           >

@@ -67,9 +67,9 @@ test.describe('jornada pública (modo demonstrativo)', () => {
     });
     await page.getByRole('button', { name: /Ver na minha mesa/ }).click();
     await expect.poll(() => intents.length).toBeGreaterThan(0);
-    // Escala fixa => Scene Viewer sem redimensionamento; arquivo é o GLB publicado.
+    // Padrão "Ampliar com 2 dedos": o Scene Viewer recebe o modelo SEM resizable=false (pinça liberada).
     expect(intents[0]).toContain('arvr.google.com/scene-viewer');
-    expect(intents[0]).toContain('resizable=false');
+    expect(intents[0]).not.toContain('resizable=false');
     expect(decodeURIComponent(intents[0]!)).toContain('/demo/models/coxinha-demonstrativa.glb');
     await expect
       .poll(async () => page.evaluate(() => sessionStorage.getItem('one-ar-menu:demo-events') ?? ''))
@@ -81,14 +81,29 @@ test.describe('jornada pública (modo demonstrativo)', () => {
     await expect(page.getByText(/Não foi possível abrir a realidade aumentada/)).toBeVisible();
   });
 
-  test('modelo do cheeseburger (texturas + 120 mil triângulos) carrega e usa escala fixa', async ({
+  test('"Travar tamanho real" envia o Scene Viewer com resizable=false', async ({ page }, info) => {
+    test.skip(info.project.name !== 'mobile', 'AR só é oferecida em celular');
+    const intents: string[] = [];
+    page.on('request', (r) => r.url().startsWith('intent://') && intents.push(r.url()));
+    await page.goto('/experiencia/coxinha-demonstrativa');
+    await expect(page.locator('[data-viewer-state]')).toHaveAttribute('data-viewer-state', 'ready', {
+      timeout: 30_000,
+    });
+    await page.getByRole('radio', { name: 'Travar tamanho real' }).click();
+    await page.getByRole('button', { name: /Ver na minha mesa/ }).click();
+    await expect.poll(() => intents.length).toBeGreaterThan(0);
+    expect(intents[0]).toContain('resizable=false');
+  });
+
+  test('modelo do cheeseburger (texturas + 120 mil triângulos) carrega com ampliação liberada', async ({
     page,
   }) => {
     await page.goto('/experiencia/cheeseburger-cheddar-demonstrativo');
     await expect(page.locator('[data-viewer-state]')).toHaveAttribute('data-viewer-state', 'ready', {
       timeout: 45_000,
     });
-    await expect(page.locator('model-viewer')).toHaveAttribute('ar-scale', 'fixed');
+    // Na experiência o padrão é ampliar com pinça (abre no tamanho real, ar-scale="auto").
+    await expect(page.locator('model-viewer')).toHaveAttribute('ar-scale', 'auto');
     await expect(page.getByText(/26 × 26 × 15,5 cm/)).toBeVisible();
   });
 
@@ -100,15 +115,39 @@ test.describe('jornada pública (modo demonstrativo)', () => {
     await expect(page.locator('model-viewer')).toHaveAttribute('ar-scale', 'fixed');
   });
 
-  test('alternar para escala livre muda o ar-scale (só no celular)', async ({ page }, info) => {
+  test('padrão permite ampliar com 2 dedos; dá para travar o tamanho real (só no celular)', async ({
+    page,
+  }, info) => {
     test.skip(info.project.name !== 'mobile', 'alternância só aparece no celular');
     await page.goto('/experiencia/coxinha-demonstrativa');
-    await expect(page.locator('model-viewer')).toHaveAttribute('ar-scale', 'fixed', { timeout: 30_000 });
-    await page.getByRole('radio', { name: 'Livre' }).click();
-    await expect(page.locator('model-viewer')).toHaveAttribute('ar-scale', 'auto');
-    await expect(page.getByText(/O tamanho deixa de ser o real/)).toBeVisible();
-    await page.getByRole('radio', { name: 'Tamanho real' }).click();
+    await expect(page.locator('model-viewer')).toHaveAttribute('ar-scale', 'auto', { timeout: 30_000 });
+    await expect(page.getByRole('radio', { name: 'Ampliar com 2 dedos' })).toHaveAttribute(
+      'aria-checked',
+      'true',
+    );
+    await expect(page.getByText(/movimento de pinça para ampliar/)).toBeVisible();
+    await page.getByRole('radio', { name: 'Travar tamanho real' }).click();
     await expect(page.locator('model-viewer')).toHaveAttribute('ar-scale', 'fixed');
+    await page.getByRole('radio', { name: 'Ampliar com 2 dedos' }).click();
+    await expect(page.locator('model-viewer')).toHaveAttribute('ar-scale', 'auto');
+  });
+
+  test('visualizador 3D permite aproximar bastante (zoom por pinça)', async ({ page }) => {
+    await page.goto('/experiencia/coxinha-demonstrativa');
+    const mv = page.locator('model-viewer');
+    await expect(page.locator('[data-viewer-state]')).toHaveAttribute('data-viewer-state', 'ready', {
+      timeout: 30_000,
+    });
+    await expect(mv).toHaveAttribute('min-field-of-view', '6deg');
+    // Aproxima via API do model-viewer e confere que o campo de visão realmente diminui (objeto maior na tela).
+    const antes = await mv.evaluate((el) => (el as unknown as { getFieldOfView(): number }).getFieldOfView());
+    await mv.evaluate((el) => {
+      const m = el as unknown as { zoom(n: number): void };
+      for (let i = 0; i < 30; i++) m.zoom(1);
+    });
+    await expect
+      .poll(() => mv.evaluate((el) => (el as unknown as { getFieldOfView(): number }).getFieldOfView()))
+      .toBeLessThan(antes / 2);
   });
 
   test('busca e filtro "Com 3D"', async ({ page }) => {

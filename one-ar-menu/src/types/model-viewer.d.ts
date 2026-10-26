@@ -25,6 +25,8 @@ type ModelViewerAttributes = DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTML
   'min-camera-orbit'?: string;
   'max-camera-orbit'?: string;
   'field-of-view'?: string;
+  'min-field-of-view'?: string;
+  'max-field-of-view'?: string;
   'interpolation-decay'?: string;
   'xr-environment'?: boolean;
 };

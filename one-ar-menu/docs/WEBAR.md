@@ -62,6 +62,12 @@ O cliente relatou que todos os produtos pareciam muito pequenos na AR. Diagnóst
    ampliar e ver detalhes; o texto avisa que o tamanho deixa de ser o real.
 5. Em WebXR, `xr-environment` usa a estimativa de luz do ambiente para iluminar o modelo como o restante da mesa.
 
+**Atualização (pedido do cliente):** o padrão da experiência passou a ser **“Ampliar com 2 dedos”**
+(`ar-scale="auto"`): o prato abre no tamanho cadastrado e o movimento de pinça amplia (Scene Viewer sem
+`resizable=false`, Quick Look com escala de conteúdo, WebXR com escala livre). **“Travar tamanho real”**
+(`ar-scale="fixed"`) segue disponível. A régua de calibração continua sempre fixa. No visualizador 3D,
+`min-field-of-view="6deg"` e `min-camera-orbit="auto auto 0m"` permitem aproximar bem mais.
+
 Percepção: objetos em tamanho real costumam parecer menores na tela do que ao vivo, principalmente com o celular
 alto. A régua é o tira-teima objetivo.
 

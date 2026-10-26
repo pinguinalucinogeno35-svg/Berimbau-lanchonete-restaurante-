@@ -3,11 +3,19 @@ import { cn } from '@/lib/cn';
 export type ScaleMode = 'real' | 'livre';
 
 const OPCOES: Array<{ value: ScaleMode; label: string; hint: string }> = [
-  { value: 'real', label: 'Tamanho real', hint: 'Usa as medidas cadastradas. Não dá para ampliar.' },
-  { value: 'livre', label: 'Livre', hint: 'Amplie ou reduza com dois dedos. O tamanho deixa de ser o real.' },
+  {
+    value: 'livre',
+    label: 'Ampliar com 2 dedos',
+    hint: 'Abre no tamanho real. Faça o movimento de pinça para ampliar e ver os detalhes; ao ampliar, o tamanho deixa de ser o real.',
+  },
+  {
+    value: 'real',
+    label: 'Travar tamanho real',
+    hint: 'Mantém sempre as medidas cadastradas. Não é possível ampliar.',
+  },
 ];
 
-/** Escolha da escala na AR. "Tamanho real" é o padrão; "Livre" serve para ver detalhes de perto. */
+/** Escolha da escala na AR. Padrão: abre no tamanho real e permite ampliar com pinça; opção de travar. */
 export function ScaleModeToggle({ value, onChange }: { value: ScaleMode; onChange: (v: ScaleMode) => void }) {
   const hint = OPCOES.find((o) => o.value === value)?.hint ?? '';
   return (

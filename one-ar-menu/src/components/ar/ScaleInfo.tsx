@@ -28,7 +28,7 @@ export function ScaleInfo({
           ? 'Escala conferida presencialmente; o rastreamento do aparelho pode variar alguns milímetros.'
           : scaleLocked
             ? 'Exibido em escala aproximada às medidas cadastradas, ainda não verificada presencialmente.'
-            : 'Escala livre: o tamanho na AR pode ser ajustado e não representa o tamanho real.'}
+            : 'Na AR o prato abre no tamanho das medidas cadastradas; ao ampliar com dois dedos, deixa de representar o tamanho real.'}
       </p>
     </div>
   );

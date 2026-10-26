@@ -20,7 +20,7 @@ export default function ExperiencePage() {
   const { slug = '' } = useParams();
   const product = useProduct(slug);
   const device = useMemo(() => detectDevice(), []);
-  const [modoEscala, setModoEscala] = useState<ScaleMode>('real');
+  const [modoEscala, setModoEscala] = useState<ScaleMode>('livre');
   const p = product.data;
   useDocumentTitle(p ? `${p.name} em 3D` : null);
 
