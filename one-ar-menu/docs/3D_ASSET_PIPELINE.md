@@ -55,6 +55,22 @@ resultado, valida, e só publica após aprovação.
   ```
 - Valide: `node scripts/validate-models.mjs pasta/` (validador oficial do Khronos, 0 erros).
 
+### Atalho: `scripts/prepare-model.mjs`
+
+Para GLBs recebidos prontos (de fornecedor, scanner ou gerador por IA):
+
+```bash
+node scripts/prepare-model.mjs entrada.glb saida.glb --largura-cm 20 --triangulos 120000 --textura 1024
+```
+
+O script remove `EXT_meshopt_compression`/`KHR_mesh_quantization`/Draco (nem todo visualizador AR aceita, e o
+`<model-viewer>` buscaria o decodificador num CDN externo), simplifica a malha, escala pela **largura total do modelo**
+(se o modelo inclui prato, informe a largura do prato), centraliza, apoia a base em y = 0 e reduz as texturas mantendo
+JPEG/PNG. Confira o resultado com `validate-models.mjs` e `render-posters.mjs`.
+
+Exemplo real (cheeseburger gerado por IA): 995 mil → 120 mil triângulos, 8,5 → 4,3 MB, de 33,5 cm (unidade
+arbitrária, origem no centro) para prato de 20 cm com base na mesa.
+
 ## 8. Exportar
 
 - **GLB** (glTF 2.0 binário).

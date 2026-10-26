@@ -35,19 +35,20 @@ cp .env.example .env.local     # modo demonstrativo funciona sem editar nada
 npm run dev                    # http://localhost:5173
 ```
 
-| Comando                            | O que faz                                                               |
-| ---------------------------------- | ----------------------------------------------------------------------- |
-| `npm run dev`                      | Servidor de desenvolvimento                                             |
-| `npm run build`                    | Checagem de tipos + build de produção em `dist/`                        |
-| `npm run preview`                  | Serve o build (necessário para testar o service worker)                 |
-| `npm run lint` / `npm run format`  | ESLint / Prettier                                                       |
-| `npm test`                         | Testes unitários e de integração (Vitest + Testing Library)             |
-| `npm run test:e2e`                 | Testes ponta a ponta (Playwright; sobe o build sozinho)                 |
-| `npm run models:demo`              | Regera os GLB demonstrativos em `public/demo/models`                    |
-| `node scripts/validate-models.mjs` | Valida GLBs com o validador oficial do Khronos                          |
-| `node scripts/render-posters.mjs`  | Renderiza os posters WebP dos modelos com o próprio `<model-viewer>`    |
-| `npm run icons`                    | Gera os ícones provisórios do PWA                                       |
-| `scripts/test-db.sh`               | Testa migrações, seed e RLS num PostgreSQL local (ver docs/DATABASE.md) |
+| Comando                                                         | O que faz                                                                                       |
+| --------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
+| `npm run dev`                                                   | Servidor de desenvolvimento                                                                     |
+| `npm run build`                                                 | Checagem de tipos + build de produção em `dist/`                                                |
+| `npm run preview`                                               | Serve o build (necessário para testar o service worker)                                         |
+| `npm run lint` / `npm run format`                               | ESLint / Prettier                                                                               |
+| `npm test`                                                      | Testes unitários e de integração (Vitest + Testing Library)                                     |
+| `npm run test:e2e`                                              | Testes ponta a ponta (Playwright; sobe o build sozinho)                                         |
+| `npm run models:demo`                                           | Regera os GLB demonstrativos em `public/demo/models`                                            |
+| `node scripts/prepare-model.mjs in.glb out.glb --largura-cm 20` | Prepara um GLB recebido: descompacta, simplifica, escala em cm, base na mesa e texturas menores |
+| `node scripts/validate-models.mjs`                              | Valida GLBs com o validador oficial do Khronos                                                  |
+| `node scripts/render-posters.mjs`                               | Renderiza os posters WebP dos modelos com o próprio `<model-viewer>`                            |
+| `npm run icons`                                                 | Gera os ícones provisórios do PWA                                                               |
+| `scripts/test-db.sh`                                            | Testa migrações, seed e RLS num PostgreSQL local (ver docs/DATABASE.md)                         |
 
 Para o Playwright usar um Chromium já instalado: `PLAYWRIGHT_CHROMIUM_PATH=/caminho/do/chrome npm run test:e2e`.
 Sem isso, rode `npx playwright install chromium` antes.

@@ -15,13 +15,13 @@
 
 ## Implementado, ainda não verificado de ponta a ponta
 
-| Item                                                                                 | O que falta                                                |
-| ------------------------------------------------------------------------------------ | ---------------------------------------------------------- |
-| Realidade aumentada (WebXR, Scene Viewer, Quick Look)                                | **Teste em aparelhos físicos** (docs/HOMOLOGACAO.md)       |
-| AR a partir da PWA instalada (principalmente iPhone)                                 | Teste físico                                               |
-| Integração Supabase (leitura pública, Auth, painel, upload, cópia staging→published) | Projeto Supabase real + credenciais                        |
-| Edge Function `track-event` (validação, limite de frequência)                        | Deploy no Supabase; o SQL de limite foi testado localmente |
-| Atualização do PWA (aviso de nova versão) e uso offline                              | Teste manual com dois deploys                              |
+| Item                                                                                 | O que falta                                                           |
+| ------------------------------------------------------------------------------------ | --------------------------------------------------------------------- |
+| Realidade aumentada (WebXR, Scene Viewer, Quick Look)                                | Abriu em 1 celular real (26/10); completar a matriz de HOMOLOGACAO.md |
+| AR a partir da PWA instalada (principalmente iPhone)                                 | Teste físico                                                          |
+| Integração Supabase (leitura pública, Auth, painel, upload, cópia staging→published) | Projeto Supabase real + credenciais                                   |
+| Edge Function `track-event` (validação, limite de frequência)                        | Deploy no Supabase; o SQL de limite foi testado localmente            |
+| Atualização do PWA (aviso de nova versão) e uso offline                              | Teste manual com dois deploys                                         |
 
 ## Demonstrativo (substituir antes de produção)
 

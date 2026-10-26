@@ -1,6 +1,9 @@
 # Checklist de homologação (aparelhos físicos, no restaurante)
 
-Preencha uma linha por aparelho. **Até agora nenhum teste físico foi executado.**
+Preencha uma linha por aparelho.
+
+**26/10/2026 — primeiro teste físico:** a AR abriu num celular real com a coxinha demonstrativa (relato do cliente).
+Ainda falta registrar aparelho, sistema, modo de AR (WebXR/Scene Viewer/Quick Look), apoio na mesa e escala.
 
 ## Matriz de aparelhos
 

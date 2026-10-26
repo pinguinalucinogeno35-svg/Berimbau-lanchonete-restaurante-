@@ -190,6 +190,21 @@ export const demoProducts: Product[] = [
     poster: '/demo/posters/hamburguer-demonstrativo.webp',
     arModel: modelo(2, '', 'hamburguer-demonstrativo', [11.6, 11.6, 7.9]),
   }),
+  produto(9, {
+    categoryId: catId('hamburgueres'),
+    name: 'Cheeseburger cheddar demonstrativo',
+    slug: 'cheeseburger-cheddar-demonstrativo',
+    description:
+      'Hambúrguer triplo com cheddar derretido, servido no prato. Modelo 3D gerado por IA e otimizado para celular: é ilustrativo e não representa o produto real do restaurante.',
+    ingredients: ['Pão', 'Carne', 'Queijo cheddar'],
+    allergens: ['glúten', 'leite'],
+    priceCents: 3800,
+    portionDescription: '1 unidade (modelo com prato de 20 cm; hambúrguer de aprox. 11,5 cm)',
+    isAvailable: true,
+    isFeatured: true,
+    poster: '/demo/posters/cheeseburger-cheddar.webp',
+    arModel: modelo(4, '', 'cheeseburger-cheddar', [20, 20, 11.9]),
+  }),
   produto(6, {
     categoryId: catId('sobremesas'),
     name: 'Sobremesa demonstrativa',

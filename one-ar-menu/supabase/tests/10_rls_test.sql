@@ -26,9 +26,9 @@ end $$;
 -- 1) Anônimo: só conteúdo publicado -------------------------------------------
 set role anon;
 select set_config('request.jwt.claim.sub', '', false);
-select pg_temp.check((select count(*) from public.products) = 7, 'anon vê só os 7 produtos publicados');
+select pg_temp.check((select count(*) from public.products) = 8, 'anon vê só os 8 produtos publicados');
 select pg_temp.check(not exists (select 1 from public.products where slug = 'produto-nao-publicado'), 'anon não vê rascunho');
-select pg_temp.check((select count(*) from public.product_ar_models) = 3, 'anon vê só os 3 modelos aprovados e publicados');
+select pg_temp.check((select count(*) from public.product_ar_models) = 4, 'anon vê só os 4 modelos aprovados e publicados');
 select pg_temp.check(not exists (select 1 from public.product_ar_models where approval_status <> 'approved'), 'anon não vê modelo em revisão');
 select pg_temp.check((select count(*) from public.qr_codes) = 0, 'anon não lista QR codes');
 select pg_temp.check((select table_label from public.resolve_qr_code('mesa-02')) = 'Mesa 2', 'anon resolve um QR code específico');
@@ -49,7 +49,7 @@ reset role;
 -- 2) Intruso autenticado sem vínculo --------------------------------------------
 set role authenticated;
 select set_config('request.jwt.claim.sub', '33333333-3333-4333-8333-333333333333', false);
-select pg_temp.check((select count(*) from public.products) = 7, 'intruso vê só o público');
+select pg_temp.check((select count(*) from public.products) = 8, 'intruso vê só o público');
 update public.products set price_cents = 1 where slug = 'coxinha-demonstrativa';
 select pg_temp.check((select price_cents from public.products where slug = 'coxinha-demonstrativa') = 900, 'intruso não altera preço');
 do $$ begin
@@ -64,7 +64,7 @@ reset role;
 -- 3) Editor ----------------------------------------------------------------------
 set role authenticated;
 select set_config('request.jwt.claim.sub', '22222222-2222-4222-8222-222222222222', false);
-select pg_temp.check((select count(*) from public.products) = 8, 'editor vê também o rascunho');
+select pg_temp.check((select count(*) from public.products) = 9, 'editor vê também o rascunho');
 update public.products set price_cents = 950 where slug = 'coxinha-demonstrativa';
 select pg_temp.check((select price_cents from public.products where slug = 'coxinha-demonstrativa') = 950, 'editor altera preço');
 do $$ begin

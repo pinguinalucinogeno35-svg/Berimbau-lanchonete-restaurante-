@@ -81,6 +81,17 @@ test.describe('jornada pública (modo demonstrativo)', () => {
     await expect(page.getByText(/Não foi possível abrir a realidade aumentada/)).toBeVisible();
   });
 
+  test('modelo do cheeseburger (texturas + 120 mil triângulos) carrega e usa escala fixa', async ({
+    page,
+  }) => {
+    await page.goto('/experiencia/cheeseburger-cheddar-demonstrativo');
+    await expect(page.locator('[data-viewer-state]')).toHaveAttribute('data-viewer-state', 'ready', {
+      timeout: 45_000,
+    });
+    await expect(page.locator('model-viewer')).toHaveAttribute('ar-scale', 'fixed');
+    await expect(page.getByText(/20 × 20 × 11,9 cm/)).toBeVisible();
+  });
+
   test('busca e filtro "Com 3D"', async ({ page }) => {
     await page.goto('/cardapio');
     await page.getByRole('searchbox').fill('sobremesa');

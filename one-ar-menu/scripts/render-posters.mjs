@@ -8,7 +8,10 @@ import { fileURLToPath } from 'node:url';
 import { chromium } from '@playwright/test';
 
 const RAIZ = join(dirname(fileURLToPath(import.meta.url)), '..');
-const MODELOS = ['coxinha-demonstrativa', 'hamburguer-demonstrativo', 'sobremesa-demonstrativa'];
+// Sem argumentos: renderiza os modelos demonstrativos. Com argumentos: só os nomes informados (sem .glb).
+const MODELOS = process.argv.slice(2).length
+  ? process.argv.slice(2)
+  : ['coxinha-demonstrativa', 'hamburguer-demonstrativo', 'sobremesa-demonstrativa', 'cheeseburger-cheddar'];
 const SAIDA = join(RAIZ, 'public', 'demo', 'posters');
 mkdirSync(SAIDA, { recursive: true });
 

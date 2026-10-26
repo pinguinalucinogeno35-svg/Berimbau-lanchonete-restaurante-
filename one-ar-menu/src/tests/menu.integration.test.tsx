@@ -40,7 +40,10 @@ describe('cardápio', () => {
     renderRoutes(routes, '/cardapio');
     const busca = await screen.findByRole('searchbox');
     await user.type(busca, 'hamburguer');
-    await waitFor(() => expect(screen.getAllByRole('link', { name: /demonstrativ/ })).toHaveLength(1));
+    // Encontra pelo nome (Hambúrguer) e pela descrição (cheeseburger "Hambúrguer triplo…"), e nada mais.
+    await waitFor(() => expect(screen.getAllByRole('link', { name: /demonstrativ/ })).toHaveLength(2));
+    expect(screen.getByRole('link', { name: /Hambúrguer demonstrativo/ })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: /Cheeseburger cheddar demonstrativo/ })).toBeInTheDocument();
     await user.clear(busca);
     await user.type(busca, 'zzzz');
     expect(await screen.findByText('Nada encontrado')).toBeInTheDocument();

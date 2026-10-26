@@ -52,6 +52,10 @@ values
   ('00000000-0000-4000-8000-000000000207', '00000000-0000-4000-8000-000000000001', '00000000-0000-4000-8000-000000000105',
    'Bebida demonstrativa', 'bebida-demonstrativa', 'Item fictício de bebida.',
    '{"Ingredientes demonstrativos"}', '{}', 1200, '300 ml', true, true, false, 6),
+  ('00000000-0000-4000-8000-000000000209', '00000000-0000-4000-8000-000000000001', '00000000-0000-4000-8000-000000000103',
+   'Cheeseburger cheddar demonstrativo', 'cheeseburger-cheddar-demonstrativo',
+   'Hambúrguer triplo com cheddar derretido, servido no prato. Modelo 3D gerado por IA e otimizado para celular: é ilustrativo e não representa o produto real do restaurante.',
+   '{Pão,Carne,"Queijo cheddar"}', '{glúten,leite}', 3800, '1 unidade (modelo com prato de 20 cm; hambúrguer de aprox. 11,5 cm)', true, true, true, 5),
   ('00000000-0000-4000-8000-000000000208', '00000000-0000-4000-8000-000000000001', '00000000-0000-4000-8000-000000000105',
    'Produto não publicado', 'produto-nao-publicado', 'Rascunho: não deve aparecer no cardápio público.',
    '{}', '{}', 100, '', true, false, false, 7)
@@ -60,7 +64,8 @@ on conflict (id) do nothing;
 insert into public.product_media (restaurant_id, product_id, media_type, storage_path, alt_text) values
   ('00000000-0000-4000-8000-000000000001', '00000000-0000-4000-8000-000000000201', 'image', '/demo/posters/coxinha-demonstrativa.webp', 'Imagem gerada do modelo 3D demonstrativo da coxinha'),
   ('00000000-0000-4000-8000-000000000001', '00000000-0000-4000-8000-000000000205', 'image', '/demo/posters/hamburguer-demonstrativo.webp', 'Imagem gerada do modelo 3D demonstrativo do hambúrguer'),
-  ('00000000-0000-4000-8000-000000000001', '00000000-0000-4000-8000-000000000206', 'image', '/demo/posters/sobremesa-demonstrativa.webp', 'Imagem gerada do modelo 3D demonstrativo da sobremesa');
+  ('00000000-0000-4000-8000-000000000001', '00000000-0000-4000-8000-000000000206', 'image', '/demo/posters/sobremesa-demonstrativa.webp', 'Imagem gerada do modelo 3D demonstrativo da sobremesa'),
+  ('00000000-0000-4000-8000-000000000001', '00000000-0000-4000-8000-000000000209', 'image', '/demo/posters/cheeseburger-cheddar.webp', 'Imagem gerada do modelo 3D ilustrativo do cheeseburger');
 
 -- Modelos já aprovados e publicados (o seed roda como service role, sem passar pelo trigger de revisão).
 insert into public.product_ar_models
@@ -72,6 +77,8 @@ values
    '/demo/models/hamburguer-demonstrativo.glb', '/demo/posters/hamburguer-demonstrativo.webp', 11.6, 7.9, 11.6, false, true, 'approved', 1, now()),
   ('00000000-0000-4000-8000-000000000303', '00000000-0000-4000-8000-000000000001', '00000000-0000-4000-8000-000000000206',
    '/demo/models/sobremesa-demonstrativa.glb', '/demo/posters/sobremesa-demonstrativa.webp', 6.8, 7.8, 6.8, false, true, 'approved', 1, now()),
+  ('00000000-0000-4000-8000-000000000305', '00000000-0000-4000-8000-000000000001', '00000000-0000-4000-8000-000000000209',
+   '/demo/models/cheeseburger-cheddar.glb', '/demo/posters/cheeseburger-cheddar.webp', 20, 11.9, 20, false, true, 'approved', 1, now()),
   -- Versão em revisão: NÃO pode aparecer no cardápio público.
   ('00000000-0000-4000-8000-000000000304', '00000000-0000-4000-8000-000000000001', '00000000-0000-4000-8000-000000000202',
    '/demo/models/coxinha-demonstrativa.glb', null, 6.0, 4.0, 6.0, false, true, 'ready_for_review', 1, null)
