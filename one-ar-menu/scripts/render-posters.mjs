@@ -11,7 +11,13 @@ const RAIZ = join(dirname(fileURLToPath(import.meta.url)), '..');
 // Sem argumentos: renderiza os modelos demonstrativos. Com argumentos: só os nomes informados (sem .glb).
 const MODELOS = process.argv.slice(2).length
   ? process.argv.slice(2)
-  : ['coxinha-demonstrativa', 'hamburguer-demonstrativo', 'sobremesa-demonstrativa', 'cheeseburger-cheddar'];
+  : [
+      'coxinha-demonstrativa',
+      'hamburguer-demonstrativo',
+      'sobremesa-demonstrativa',
+      'cheeseburger-cheddar',
+      'regua-calibracao-30cm',
+    ];
 const SAIDA = join(RAIZ, 'public', 'demo', 'posters');
 mkdirSync(SAIDA, { recursive: true });
 

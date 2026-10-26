@@ -30,6 +30,8 @@ export interface ARProductViewerProps {
   approved: boolean;
   scaleVerified: boolean;
   scaleLocked: boolean;
+  /** Sobrescreve a escala na AR: 'fixed' = tamanho real cadastrado; 'auto' = livre (o cliente pode ampliar). */
+  arScale?: 'fixed' | 'auto';
   isDemo?: boolean;
   variant?: 'inline' | 'immersive';
   /** Mostrar o botão de AR dentro do componente (na página de produto ele fica na página de experiência). */
@@ -75,6 +77,7 @@ export function ARProductViewer(props: ARProductViewerProps) {
     alt,
     approved,
     scaleLocked,
+    arScale,
     variant = 'inline',
     showArButton = false,
     onModelOpen,
@@ -237,7 +240,7 @@ export function ARProductViewer(props: ARProductViewerProps) {
             alt={alt}
             ar
             ar-modes="webxr scene-viewer quick-look"
-            ar-scale={scaleLocked ? 'fixed' : 'auto'}
+            ar-scale={arScale ?? (scaleLocked ? 'fixed' : 'auto')}
             ar-placement="floor"
             camera-controls
             touch-action="pan-y"
@@ -246,6 +249,7 @@ export function ARProductViewer(props: ARProductViewerProps) {
             shadow-softness="0.85"
             exposure="1"
             environment-image="neutral"
+            xr-environment
             camera-orbit="30deg 72deg auto"
             loading="eager"
             reveal="auto"

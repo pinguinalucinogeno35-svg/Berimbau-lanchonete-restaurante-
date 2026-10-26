@@ -1,23 +1,30 @@
 {
   "coxinha-demonstrativa": {
-    "larguraCm": 6.6,
-    "alturaCm": 8.6,
-    "profundidadeCm": 6.6,
+    "larguraCm": 8.2,
+    "alturaCm": 10.7,
+    "profundidadeCm": 8.2,
     "minY": 0,
     "bytes": 655384
   },
   "hamburguer-demonstrativo": {
-    "larguraCm": 11.6,
-    "alturaCm": 7.9,
-    "profundidadeCm": 11.6,
+    "larguraCm": 12.6,
+    "alturaCm": 8.6,
+    "profundidadeCm": 12.6,
     "minY": 0,
     "bytes": 1191844
   },
   "sobremesa-demonstrativa": {
-    "larguraCm": 6.8,
-    "alturaCm": 7.8,
-    "profundidadeCm": 6.8,
+    "larguraCm": 8.1,
+    "alturaCm": 9.2,
+    "profundidadeCm": 8.1,
     "minY": 0,
     "bytes": 568000
+  },
+  "regua-calibracao-30cm": {
+    "larguraCm": 30.1,
+    "alturaCm": 0.3,
+    "profundidadeCm": 3.5,
+    "minY": 0,
+    "bytes": 40492
   }
 }

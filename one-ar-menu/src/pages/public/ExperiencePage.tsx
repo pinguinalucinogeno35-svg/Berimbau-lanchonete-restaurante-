@@ -1,6 +1,6 @@
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { Link, useParams } from 'react-router';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, Ruler } from 'lucide-react';
 import { ARProductViewer } from '@/components/ar/ARProductViewer';
 import { ArGuidance, ArSteps } from '@/components/ar/ArGuidance';
 import { DesktopHandoff } from '@/components/ar/DesktopHandoff';
@@ -14,11 +14,13 @@ import { useProduct } from '@/hooks/useMenu';
 import { useDocumentTitle } from '@/hooks/useDocumentTitle';
 import { detectDevice } from '@/lib/device';
 import { trackEvent } from '@/features/analytics/track';
+import { ScaleModeToggle, type ScaleMode } from '@/components/ar/ScaleModeToggle';
 
 export default function ExperiencePage() {
   const { slug = '' } = useParams();
   const product = useProduct(slug);
   const device = useMemo(() => detectDevice(), []);
+  const [modoEscala, setModoEscala] = useState<ScaleMode>('real');
   const p = product.data;
   useDocumentTitle(p ? `${p.name} em 3D` : null);
 
@@ -74,6 +76,7 @@ export default function ExperiencePage() {
             approved={modelo.approvalStatus === 'approved'}
             scaleVerified={modelo.scaleVerified}
             scaleLocked={modelo.scaleLocked}
+            arScale={modelo.scaleLocked && modoEscala === 'livre' ? 'auto' : undefined}
             isDemo={modelo.isDemo}
             variant="immersive"
             showArButton={device.category !== 'desktop'}
@@ -85,11 +88,21 @@ export default function ExperiencePage() {
           {modelo.isDemo && (
             <Notice tone="warning">Modelo demonstrativo. Não representa o alimento real.</Notice>
           )}
+          {modelo.scaleLocked && device.category !== 'desktop' && (
+            <ScaleModeToggle value={modoEscala} onChange={setModoEscala} />
+          )}
           <ScaleInfo
             dimensions={modelo.dimensions}
             scaleVerified={modelo.scaleVerified}
-            scaleLocked={modelo.scaleLocked}
+            scaleLocked={modelo.scaleLocked && modoEscala === 'real'}
           />
+          <Link
+            to="/calibrar"
+            className="inline-flex items-center gap-2 self-start text-sm text-accent-strong hover:underline"
+          >
+            <Ruler className="size-4" aria-hidden="true" /> O tamanho parece errado? Confira com a régua de
+            calibração
+          </Link>
           {device.category === 'desktop' ? (
             <>
               <p className="text-sm text-muted">

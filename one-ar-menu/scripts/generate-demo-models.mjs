@@ -204,7 +204,11 @@ function medidas(partes) {
 const io = new NodeIO();
 const resumo = {};
 
-async function salvar(nome, partes, opcoes) {
+// `escala` ajusta o tamanho final (fator uniforme) sem mudar a forma; a base continua em y = 0.
+async function salvar(nome, partes, opcoes = {}) {
+  const { escala = 1, ...resto } = opcoes;
+  if (escala !== 1) for (const p of partes) p.pos = p.pos.map((v) => v * escala);
+  opcoes = resto;
   const m = medidas(partes);
   if (Math.abs(m.minY) > 1e-4) throw new Error(`${nome}: a base precisa estar em y=0 (está em ${m.minY})`);
   const doc = criarGlb(nome, partes, { ...opcoes, extras: { dimensoesCm: m } });
@@ -239,7 +243,8 @@ async function salvar(nome, partes, opcoes) {
       return c;
     },
   });
-  await salvar('coxinha-demonstrativa', [coxinha], { rugosidade: 0.82 });
+  // Coxinha de lanchonete: ~8,2 cm de largura × ~10,7 cm de altura.
+  await salvar('coxinha-demonstrativa', [coxinha], { rugosidade: 0.82, escala: 1.24 });
 }
 
 // ---------- Hambúrguer demonstrativo (≈ 11 × 8 cm) ----------
@@ -312,7 +317,8 @@ async function salvar(nome, partes, opcoes) {
     cor: (u, _a, n) =>
       n > 0.78 && u > 0.35 ? hex('#F3E2C0') : mixColor(PAO, PAO_CLARO, clamp(0.3 - u * 0.3 + n * 0.2, 0, 1)),
   });
-  await salvar('hamburguer-demonstrativo', partes);
+  // Hambúrguer artesanal: ~12,6 cm de diâmetro.
+  await salvar('hamburguer-demonstrativo', partes, { escala: 1.085 });
 }
 
 // ---------- Sobremesa demonstrativa: bolinho com bola de sorvete (≈ 7 × 7 cm) ----------
@@ -350,7 +356,109 @@ async function salvar(nome, partes, opcoes) {
   sorvete.nome = 'sorvete';
   sorvete.rugosidade = 0.55;
   partes.push(sorvete);
-  await salvar('sobremesa-demonstrativa', partes);
+  // Bolinho individual: ~8 cm de diâmetro.
+  await salvar('sobremesa-demonstrativa', partes, { escala: 1.18 });
+}
+
+// ---------- Régua de calibração (30 cm) ----------
+// Serve para conferir a escala da AR no aparelho: posicione ao lado de uma régua real ou de uma folha A4 (29,7 cm).
+{
+  function caixa(x0, x1, y0, y1, z0, z1, cor) {
+    const faces = [
+      [
+        [x1, y0, z0],
+        [x1, y1, z0],
+        [x1, y1, z1],
+        [x1, y0, z1],
+        [1, 0, 0],
+      ],
+      [
+        [x0, y0, z1],
+        [x0, y1, z1],
+        [x0, y1, z0],
+        [x0, y0, z0],
+        [-1, 0, 0],
+      ],
+      [
+        [x0, y1, z0],
+        [x0, y1, z1],
+        [x1, y1, z1],
+        [x1, y1, z0],
+        [0, 1, 0],
+      ],
+      [
+        [x0, y0, z1],
+        [x0, y0, z0],
+        [x1, y0, z0],
+        [x1, y0, z1],
+        [0, -1, 0],
+      ],
+      [
+        [x0, y0, z1],
+        [x1, y0, z1],
+        [x1, y1, z1],
+        [x0, y1, z1],
+        [0, 0, 1],
+      ],
+      [
+        [x1, y0, z0],
+        [x0, y0, z0],
+        [x0, y1, z0],
+        [x1, y1, z0],
+        [0, 0, -1],
+      ],
+    ];
+    const pos = [],
+      nor = [],
+      col = [],
+      idx = [];
+    for (const [a, b, c, d, n] of faces) {
+      const base = pos.length / 3;
+      for (const v of [a, b, c, d]) {
+        pos.push(...v);
+        nor.push(...n);
+        col.push(...cor);
+      }
+      idx.push(base, base + 1, base + 2, base, base + 2, base + 3);
+    }
+    return { pos, nor, col, idx };
+  }
+  function juntar(lista) {
+    const out = { pos: [], nor: [], col: [], idx: [] };
+    for (const c of lista) {
+      const off = out.pos.length / 3;
+      out.pos.push(...c.pos);
+      out.nor.push(...c.nor);
+      out.col.push(...c.col);
+      out.idx.push(...c.idx.map((i) => i + off));
+    }
+    return out;
+  }
+  const L = 0.3,
+    W = 0.035,
+    T = 0.003;
+  const corpo = caixa(-L / 2, L / 2, 0, T, -W / 2, W / 2, hex('#F2E6C9'));
+  corpo.nome = 'corpo';
+  corpo.rugosidade = 0.6;
+  const marcas = [];
+  for (let cm = 0; cm <= 30; cm++) {
+    const x = -L / 2 + cm / 100;
+    const comprimento = cm % 10 === 0 ? 0.016 : cm % 5 === 0 ? 0.011 : 0.006;
+    const largura = cm % 10 === 0 ? 0.0012 : 0.0008;
+    marcas.push(
+      caixa(x - largura / 2, x + largura / 2, T, T + 0.0004, -W / 2, -W / 2 + comprimento, hex('#202521')),
+    );
+  }
+  // Faixas alternadas a cada 5 cm na borda oposta: facilitam contar à distância.
+  for (let i = 0; i < 6; i++) {
+    const x0 = -L / 2 + i * 0.05;
+    const cor = i % 2 ? hex('#C2A77B') : hex('#66735C');
+    marcas.push(caixa(x0, x0 + 0.05, T, T + 0.0003, W / 2 - 0.006, W / 2, cor));
+  }
+  const tinta = juntar(marcas);
+  tinta.nome = 'marcas';
+  tinta.rugosidade = 0.8;
+  await salvar('regua-calibracao-30cm', [corpo, tinta]);
 }
 
 console.log(JSON.stringify(resumo, null, 2));

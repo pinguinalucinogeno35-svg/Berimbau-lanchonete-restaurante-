@@ -28,6 +28,7 @@ export const routes: RouteObject[] = [
       { path: 'produto/:slug', lazy: page(() => import('@/pages/public/ProductPage')) },
       { path: 'experiencia/:slug', lazy: page(() => import('@/pages/public/ExperiencePage')) },
       { path: 'sobre', lazy: page(() => import('@/pages/public/AboutPage')) },
+      { path: 'calibrar', lazy: page(() => import('@/pages/public/CalibrationPage')) },
       { path: 'q/:code', lazy: page(() => import('@/pages/public/QrRedirectPage')) },
       { path: '*', lazy: page(() => import('@/pages/public/NotFoundPage')) },
     ],

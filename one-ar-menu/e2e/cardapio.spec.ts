@@ -89,7 +89,26 @@ test.describe('jornada pública (modo demonstrativo)', () => {
       timeout: 45_000,
     });
     await expect(page.locator('model-viewer')).toHaveAttribute('ar-scale', 'fixed');
-    await expect(page.getByText(/20 × 20 × 11,9 cm/)).toBeVisible();
+    await expect(page.getByText(/26 × 26 × 15,5 cm/)).toBeVisible();
+  });
+
+  test('régua de calibração de 30 cm carrega em escala fixa', async ({ page }) => {
+    await page.goto('/calibrar');
+    await expect(page.locator('[data-viewer-state]')).toHaveAttribute('data-viewer-state', 'ready', {
+      timeout: 30_000,
+    });
+    await expect(page.locator('model-viewer')).toHaveAttribute('ar-scale', 'fixed');
+  });
+
+  test('alternar para escala livre muda o ar-scale (só no celular)', async ({ page }, info) => {
+    test.skip(info.project.name !== 'mobile', 'alternância só aparece no celular');
+    await page.goto('/experiencia/coxinha-demonstrativa');
+    await expect(page.locator('model-viewer')).toHaveAttribute('ar-scale', 'fixed', { timeout: 30_000 });
+    await page.getByRole('radio', { name: 'Livre' }).click();
+    await expect(page.locator('model-viewer')).toHaveAttribute('ar-scale', 'auto');
+    await expect(page.getByText(/O tamanho deixa de ser o real/)).toBeVisible();
+    await page.getByRole('radio', { name: 'Tamanho real' }).click();
+    await expect(page.locator('model-viewer')).toHaveAttribute('ar-scale', 'fixed');
   });
 
   test('busca e filtro "Com 3D"', async ({ page }) => {

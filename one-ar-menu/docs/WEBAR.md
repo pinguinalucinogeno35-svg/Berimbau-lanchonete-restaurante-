@@ -47,6 +47,24 @@ code para abrir o mesmo produto no celular.
 - O texto “escala conferida presencialmente” só aparece com `scale_verified = true`. O rastreamento do aparelho
   tem erro de alguns milímetros a centímetros, conforme luz, textura da mesa e aparelho.
 
+### “Os produtos parecem pequenos” (teste físico de 26/10/2026)
+
+O cliente relatou que todos os produtos pareciam muito pequenos na AR. Diagnóstico:
+
+1. Os arquivos estavam corretos em metros e a AR usa `ar-scale="fixed"`, então o aparelho mostrava exatamente as
+   medidas cadastradas. **O problema eram as medidas**, menores que porções de lanchonete (coxinha de festa de
+   6,6 × 8,6 cm; prato de 20 cm).
+2. Medidas ajustadas para porções típicas (referência, ainda sem medir o produto real):
+   coxinha 8,2 × 10,7 cm; hambúrguer 12,6 cm; sobremesa 8,1 × 9,2 cm; cheeseburger em prato raso de 26 cm.
+3. Para separar “medida errada” de “AR do aparelho errada”, existe a **régua de calibração** em `/calibrar`
+   (30 cm, sempre em escala fixa): posicione ao lado de uma régua real ou de uma folha A4 (29,7 cm).
+4. A página de experiência tem a opção **Tamanho real / Livre**. “Livre” usa `ar-scale="auto"` para o cliente
+   ampliar e ver detalhes; o texto avisa que o tamanho deixa de ser o real.
+5. Em WebXR, `xr-environment` usa a estimativa de luz do ambiente para iluminar o modelo como o restante da mesa.
+
+Percepção: objetos em tamanho real costumam parecer menores na tela do que ao vivo, principalmente com o celular
+alto. A régua é o tira-teima objetivo.
+
 ## Privacidade
 
 O app não acessa a câmera diretamente (`getUserMedia` não é usado). A câmera é controlada pela AR do sistema
