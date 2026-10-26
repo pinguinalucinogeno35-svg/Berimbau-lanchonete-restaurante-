@@ -1,0 +1,163 @@
+@import 'tailwindcss';
+
+/*
+ * Design tokens do ONE AR Menu.
+ * Os valores --one-* são o tema padrão (identidade demonstrativa) e podem ser sobrescritos em tempo
+ * de execução pelo ThemeProvider a partir de restaurants.theme_settings.
+ */
+:root {
+  --one-bg: #111514;
+  --one-bg-alt: #1b211f;
+  --one-bg-raised: #232a27;
+  --one-surface: #f6f2e9;
+  --one-accent: #c2a77b;
+  --one-accent-strong: #d8c29c;
+  --one-olive: #66735c;
+  --one-olive-text: #9aa88e;
+  --one-text: #f8f6f0;
+  --one-text-muted: #b9b6ac;
+  --one-text-dark: #202521;
+  --one-line: rgb(248 246 240 / 0.12);
+  --one-danger: #e0a08f;
+  --one-success: #a9c39a;
+  --one-font-display: 'Cormorant Garamond', 'Times New Roman', serif;
+  --one-font-body: 'DM Sans Variable', 'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --one-radius-sm: 4px;
+  --one-radius: 8px;
+  --one-radius-lg: 14px;
+  --one-ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --one-duration: 220ms;
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-bg: var(--one-bg);
+  --color-bg-alt: var(--one-bg-alt);
+  --color-raised: var(--one-bg-raised);
+  --color-surface: var(--one-surface);
+  --color-accent: var(--one-accent);
+  --color-accent-strong: var(--one-accent-strong);
+  --color-olive: var(--one-olive);
+  --color-olive-text: var(--one-olive-text);
+  --color-text: var(--one-text);
+  --color-muted: var(--one-text-muted);
+  --color-ink: var(--one-text-dark);
+  --color-line: var(--one-line);
+  --color-danger: var(--one-danger);
+  --color-success: var(--one-success);
+  --font-display: var(--one-font-display);
+  --font-body: var(--one-font-body);
+  --radius-sm: var(--one-radius-sm);
+  --radius: var(--one-radius);
+  --radius-lg: var(--one-radius-lg);
+  --ease-one: var(--one-ease);
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    background: var(--one-bg);
+  }
+  body {
+    margin: 0;
+    min-height: 100dvh;
+    background: var(--one-bg);
+    color: var(--one-text);
+    font-family: var(--one-font-body);
+    font-size: 1rem;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  h1,
+  h2,
+  h3 {
+    font-family: var(--one-font-display);
+    font-weight: 600;
+    line-height: 1.08;
+    letter-spacing: -0.01em;
+    font-variant-numeric: lining-nums;
+  }
+  :focus-visible {
+    outline: 2px solid var(--one-accent);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+  ::selection {
+    background: var(--one-accent);
+    color: var(--one-text-dark);
+  }
+  img {
+    max-width: 100%;
+  }
+}
+
+@layer components {
+  .eyebrow {
+    font-family: var(--one-font-body);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--one-accent);
+  }
+  .hairline {
+    height: 1px;
+    width: 48px;
+    background: var(--one-accent);
+  }
+  .pad-safe-bottom {
+    padding-bottom: max(1rem, env(safe-area-inset-bottom));
+  }
+  .no-scrollbar {
+    scrollbar-width: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .reveal {
+    animation: one-reveal 420ms var(--one-ease) both;
+  }
+  .skeleton {
+    background: linear-gradient(
+      90deg,
+      var(--one-bg-alt) 0%,
+      var(--one-bg-raised) 50%,
+      var(--one-bg-alt) 100%
+    );
+    background-size: 200% 100%;
+    animation: one-shimmer 1.4s linear infinite;
+  }
+}
+
+@keyframes one-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+@keyframes one-shimmer {
+  to {
+    background-position: -200% 0;
+  }
+}
+
+model-viewer {
+  --poster-color: transparent;
+  --progress-bar-color: var(--one-accent);
+  --progress-bar-height: 2px;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 1ms !important;
+    scroll-behavior: auto !important;
+  }
+}

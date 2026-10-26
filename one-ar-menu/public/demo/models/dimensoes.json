@@ -1,0 +1,23 @@
+{
+  "coxinha-demonstrativa": {
+    "larguraCm": 6.6,
+    "alturaCm": 8.6,
+    "profundidadeCm": 6.6,
+    "minY": 0,
+    "bytes": 655384
+  },
+  "hamburguer-demonstrativo": {
+    "larguraCm": 11.6,
+    "alturaCm": 7.9,
+    "profundidadeCm": 11.6,
+    "minY": 0,
+    "bytes": 1191844
+  },
+  "sobremesa-demonstrativa": {
+    "larguraCm": 6.8,
+    "alturaCm": 7.8,
+    "profundidadeCm": 6.8,
+    "minY": 0,
+    "bytes": 568000
+  }
+}
