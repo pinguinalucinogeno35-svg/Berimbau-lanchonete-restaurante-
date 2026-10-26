@@ -3,6 +3,7 @@
 Preencha uma linha por aparelho.
 
 **26/10/2026 — primeiro teste físico:** a AR abriu num celular real com a coxinha demonstrativa (relato do cliente).
+**26/10/2026 — segundo teste físico:** a AR abriu com o cheeseburger cheddar (modelo de 120 mil triângulos, 4,3 MB, prato de 20 cm).
 Ainda falta registrar aparelho, sistema, modo de AR (WebXR/Scene Viewer/Quick Look), apoio na mesa e escala.
 
 ## Matriz de aparelhos
