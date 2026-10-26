@@ -2,7 +2,7 @@
 
 O componente `ARProductViewer` (`src/components/ar/ARProductViewer.tsx`) usa o `<model-viewer>` com
 `ar ar-modes="webxr scene-viewer quick-look" ar-placement="floor"` e `ar-scale="fixed"` quando a escala está travada.
-O próprio `<model-viewer>` decide o modo disponível. **Nenhum desses caminhos foi testado em aparelho físico ainda.**
+O próprio `<model-viewer>` decide o modo disponível. Em 26/10/2026 a AR abriu e a ampliação por pinça funcionou num celular real (modo e aparelho a registrar em HOMOLOGACAO.md).
 
 ## Android
 
@@ -90,5 +90,6 @@ falha ao ativar AR, AR sem resposta (12 s) e retorno da AR.
 | GLB carrega e renderiza em Chromium (WebGL por SwiftShader), mobile e desktop | ✔ automatizado (Playwright)     |
 | Arquivo inexistente e corrompido                                              | ✔ automatizado                  |
 | Intent do Scene Viewer gerado com escala fixa                                 | ✔ automatizado                  |
-| Abertura real de AR, posicionamento na mesa, escala                           | ✘ **pendente: aparelho físico** |
+| Abertura real de AR e ampliação por pinça                                     | ✔ 1 celular real (26/10/2026)   |
+| Escala conferida com régua / matriz completa de aparelhos                     | ✘ **pendente: aparelho físico** |
 | Quick Look no iPhone (Safari e PWA instalada)                                 | ✘ **pendente: aparelho físico** |
