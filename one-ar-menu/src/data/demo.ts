@@ -1,6 +1,13 @@
 // DADOS DEMONSTRATIVOS. Itens fictícios para provar a navegação, o 3D e a AR.
 // Não representam produtos, preços ou informações reais de nenhum restaurante.
 import type { ArModel, Category, Product, QrCode, Restaurant } from '@/types/domain';
+import versoes from './assetVersions.json';
+
+/** Acrescenta o hash do conteúdo à URL (?v=...) para nunca servir um arquivo antigo do cache. */
+export function versioned(path: string): string {
+  const v = (versoes as Record<string, string>)[path];
+  return v ? `${path}?v=${v}` : path;
+}
 
 export const DEMO_RESTAURANT_ID = '00000000-0000-4000-8000-000000000001';
 
@@ -66,9 +73,9 @@ const modelo = (
 ): ArModel => ({
   id: `00000000-0000-4000-8000-0000000003${String(n).padStart(2, '0')}`,
   productId,
-  glbUrl: `/demo/models/${arquivo}.glb`,
+  glbUrl: versioned(`/demo/models/${arquivo}.glb`),
   usdzUrl: null,
-  posterUrl: `/demo/posters/${arquivo}.webp`,
+  posterUrl: versioned(`/demo/posters/${arquivo}.webp`),
   dimensions: { widthCm: dims[0], depthCm: dims[1], heightCm: dims[2] },
   scaleVerified: false,
   scaleLocked: true,
@@ -135,7 +142,7 @@ export const demoProducts: Product[] = [
     portionDescription: '1 unidade (medidas do modelo: aprox. 8,2 × 10,7 cm)',
     isAvailable: true,
     isFeatured: true,
-    poster: '/demo/posters/coxinha-demonstrativa.webp',
+    poster: versioned('/demo/posters/coxinha-demonstrativa.webp'),
     arModel: modelo(1, '', 'coxinha-demonstrativa', [8.2, 8.2, 10.7]),
   }),
   produto(2, {
@@ -187,7 +194,7 @@ export const demoProducts: Product[] = [
     portionDescription: '1 unidade (medidas do modelo: aprox. 12,6 × 8,6 cm)',
     isAvailable: true,
     isFeatured: true,
-    poster: '/demo/posters/hamburguer-demonstrativo.webp',
+    poster: versioned('/demo/posters/hamburguer-demonstrativo.webp'),
     arModel: modelo(2, '', 'hamburguer-demonstrativo', [12.6, 12.6, 8.6]),
   }),
   produto(9, {
@@ -202,7 +209,7 @@ export const demoProducts: Product[] = [
     portionDescription: '1 unidade (modelo com prato raso de 26 cm; hambúrguer de aprox. 15 cm)',
     isAvailable: true,
     isFeatured: true,
-    poster: '/demo/posters/cheeseburger-cheddar.webp',
+    poster: versioned('/demo/posters/cheeseburger-cheddar.webp'),
     arModel: modelo(4, '', 'cheeseburger-cheddar', [26, 26, 15.5]),
   }),
   produto(6, {
@@ -216,7 +223,7 @@ export const demoProducts: Product[] = [
     portionDescription: '1 unidade (medidas do modelo: aprox. 8,1 × 9,2 cm)',
     isAvailable: true,
     isFeatured: false,
-    poster: '/demo/posters/sobremesa-demonstrativa.webp',
+    poster: versioned('/demo/posters/sobremesa-demonstrativa.webp'),
     arModel: modelo(3, '', 'sobremesa-demonstrativa', [8.1, 8.1, 9.2]),
   }),
   produto(7, {

@@ -133,9 +133,7 @@ test.describe('jornada pública (modo demonstrativo)', () => {
   });
 
   test('modelo 3D inexistente mostra erro e não quebra a página', async ({ page }) => {
-    await page.route('**/demo/models/hamburguer-demonstrativo.glb', (r) =>
-      r.fulfill({ status: 404, body: 'not found' }),
-    );
+    await page.route(/hamburguer-demonstrativo\.glb/, (r) => r.fulfill({ status: 404, body: 'not found' }));
     await page.goto('/experiencia/hamburguer-demonstrativo');
     await expect(page.locator('[data-viewer-state]')).toHaveAttribute('data-viewer-state', 'error', {
       timeout: 30_000,
@@ -145,7 +143,7 @@ test.describe('jornada pública (modo demonstrativo)', () => {
   });
 
   test('arquivo 3D corrompido mostra erro de arquivo inválido', async ({ page }) => {
-    await page.route('**/demo/models/sobremesa-demonstrativa.glb', (r) =>
+    await page.route(/sobremesa-demonstrativa\.glb/, (r) =>
       r.fulfill({ status: 200, contentType: 'model/gltf-binary', body: 'isto não é um glb' }),
     );
     await page.goto('/experiencia/sobremesa-demonstrativa');

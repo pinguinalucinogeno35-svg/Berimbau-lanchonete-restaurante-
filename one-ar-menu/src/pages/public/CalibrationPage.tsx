@@ -8,6 +8,7 @@ import { DesktopHandoff } from '@/components/ar/DesktopHandoff';
 import { Notice } from '@/components/ui/Notice';
 import { useDocumentTitle } from '@/hooks/useDocumentTitle';
 import { detectDevice } from '@/lib/device';
+import { versioned } from '@/data/demo';
 
 const PASSOS = [
   'Coloque sobre a mesa uma régua de verdade ou uma folha A4 (o lado maior tem 29,7 cm).',
@@ -35,8 +36,8 @@ export default function CalibrationPage() {
           productId="calibracao"
           name="Régua de calibração"
           alt="Régua virtual de 30 centímetros para calibração"
-          glbUrl="/demo/models/regua-calibracao-30cm.glb"
-          posterUrl="/demo/posters/regua-calibracao-30cm.webp"
+          glbUrl={versioned('/demo/models/regua-calibracao-30cm.glb')}
+          posterUrl={versioned('/demo/posters/regua-calibracao-30cm.webp')}
           dimensions={{ widthCm: 30, depthCm: 3.5, heightCm: 0.3 }}
           approved
           scaleVerified={false}

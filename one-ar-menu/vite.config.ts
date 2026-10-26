@@ -10,7 +10,8 @@ export default defineConfig({
     react(),
     tailwindcss(),
     VitePWA({
-      registerType: 'prompt',
+      // Atualiza sozinho: cardápio de mesa não pode ficar preso numa versão antiga esperando um toque.
+      registerType: 'autoUpdate',
       injectRegister: false,
       includeAssets: ['icons/favicon.svg', 'icons/apple-touch-icon.png'],
       manifest: {
