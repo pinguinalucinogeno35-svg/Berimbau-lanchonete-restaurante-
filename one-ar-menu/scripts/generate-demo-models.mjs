@@ -244,7 +244,7 @@ async function salvar(nome, partes, opcoes = {}) {
     },
   });
   // Coxinha de lanchonete: ~8,2 cm de largura × ~10,7 cm de altura.
-  await salvar('coxinha-demonstrativa', [coxinha], { rugosidade: 0.82, escala: 1.24 });
+  await salvar('coxinha-demonstrativa', [coxinha], { rugosidade: 0.82, escala: 1.622 });
 }
 
 // ---------- Hambúrguer demonstrativo (≈ 11 × 8 cm) ----------
@@ -318,7 +318,7 @@ async function salvar(nome, partes, opcoes = {}) {
       n > 0.78 && u > 0.35 ? hex('#F3E2C0') : mixColor(PAO, PAO_CLARO, clamp(0.3 - u * 0.3 + n * 0.2, 0, 1)),
   });
   // Hambúrguer artesanal: ~12,6 cm de diâmetro.
-  await salvar('hamburguer-demonstrativo', partes, { escala: 1.085 });
+  await salvar('hamburguer-demonstrativo', partes, { escala: 1.292 });
 }
 
 // ---------- Sobremesa demonstrativa: bolinho com bola de sorvete (≈ 7 × 7 cm) ----------
@@ -357,7 +357,7 @@ async function salvar(nome, partes, opcoes = {}) {
   sorvete.rugosidade = 0.55;
   partes.push(sorvete);
   // Bolinho individual: ~8 cm de diâmetro.
-  await salvar('sobremesa-demonstrativa', partes, { escala: 1.18 });
+  await salvar('sobremesa-demonstrativa', partes, { escala: 1.539 });
 }
 
 // ---------- Régua de calibração (30 cm) ----------

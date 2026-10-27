@@ -5,6 +5,7 @@ Preencha uma linha por aparelho.
 **26/10/2026 — primeiro teste físico:** a AR abriu num celular real com a coxinha demonstrativa (relato do cliente).
 **26/10/2026 — terceiro teste físico:** ampliação com 2 dedos (pinça) na AR funcionou no celular do cliente, com a versão de escala ajustada.
 **26/10/2026 — segundo teste físico:** a AR abriu com o cheeseburger cheddar (modelo de 120 mil triângulos, 4,3 MB, prato de 20 cm).
+**27/10/2026 — retorno do cliente:** “ainda está em proporções menores”; medidas de referência ampliadas (ver WEBAR.md). Conferir com a régua de `/calibrar`.
 Ainda falta registrar aparelho, sistema, modo de AR (WebXR/Scene Viewer/Quick Look), apoio na mesa e escala.
 
 ## Matriz de aparelhos

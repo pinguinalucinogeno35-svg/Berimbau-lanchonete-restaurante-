@@ -68,6 +68,12 @@ O cliente relatou que todos os produtos pareciam muito pequenos na AR. Diagnóst
 (`ar-scale="fixed"`) segue disponível. A régua de calibração continua sempre fixa. No visualizador 3D,
 `min-field-of-view="6deg"` e `min-camera-orbit="auto auto 0m"` permitem aproximar bem mais.
 
+**Segunda ampliação (27/10/2026, pedido do cliente: “ainda está em proporções menores”):** os arquivos foram
+conferidos (caixa delimitadora = medidas cadastradas, erro < 1 mm), então a AR mostrava as medidas certas. As medidas
+de referência dos modelos demonstrativos passaram para porções grandes: coxinha 10,7 × 13,9 cm; hambúrguer
+15 × 10,2 cm; sobremesa 10,5 × 12 cm; cheeseburger em prato de 30 cm (hambúrguer ≈ 17 cm). Continuam sendo
+referência demonstrativa: com produto real, use a medida do prato servido.
+
 Percepção: objetos em tamanho real costumam parecer menores na tela do que ao vivo, principalmente com o celular
 alto. A régua é o tira-teima objetivo.
 
