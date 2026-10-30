@@ -45,6 +45,11 @@ O repositório atual também hospeda outro site na raiz. Para este app, crie um 
 
 - Root Directory: `one-ar-menu`; framework Vite (o `vercel.json` já define build, saída, rewrites e cabeçalhos).
 - Variáveis do item 2 em Project Settings → Environment Variables.
+- O build da Vercel usa `VITE_BRAND=berimbau` (no `buildCommand` do `vercel.json`).
+
+**Publicação atual (30/10/2026):** https://berimbau-cardapio-ar.vercel.app — projeto `berimbau-cardapio-ar`, plano
+Hobby, deploy automático a cada push na branch padrão. A Netlify (`one-ar-menu.netlify.app`) ficou parada na versão
+de 26/10 porque a equipe esgotou os créditos do ciclo; QR codes de teste devem apontar para o endereço da Vercel.
 
 ## 5. HTTPS e domínio
 
