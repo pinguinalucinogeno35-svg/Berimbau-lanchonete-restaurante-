@@ -66,8 +66,9 @@ export function ArGuidance({ device }: { device: DeviceInfo }) {
 export function ArSteps() {
   const passos = [
     'Toque em “Ver na minha mesa”.',
-    'Aponte o celular para a mesa e mova devagar até a superfície ser reconhecida.',
-    'Toque para posicionar o prato. Caminhe ao redor para ver de outros ângulos.',
+    'Aponte o celular para baixo, para o ponto da mesa à sua frente onde o prato ficaria, e mova devagar até a superfície ser reconhecida.',
+    'O prato aparece onde o centro da tela aponta: se ficar longe, arraste-o com um dedo para perto de você.',
+    'Para comparar o tamanho, deixe o prato virtual ao lado de um objeto real, à mesma distância. Longe, tudo parece menor.',
     'Feche a experiência para voltar ao cardápio.',
   ];
   return (
