@@ -12,7 +12,7 @@ export function Brand({ compact = false }: { compact?: boolean }) {
   return (
     <Link to="/" className="flex items-center gap-3" aria-label={`${nome}, página inicial`}>
       {data?.logoUrl ? (
-        <img src={data.logoUrl} alt="" className="h-8 w-auto" />
+        <img src={data.logoUrl} alt="" className="brand-logo h-10 w-auto" />
       ) : (
         <span
           aria-hidden="true"
@@ -21,7 +21,16 @@ export function Brand({ compact = false }: { compact?: boolean }) {
           {nome.charAt(0)}
         </span>
       )}
-      {!compact && <span className="font-display text-xl leading-none tracking-wide text-text">{nome}</span>}
+      {!compact && (
+        <span
+          className={cn(
+            'font-display text-xl leading-none tracking-wide text-text',
+            data?.logoUrl && 'sr-only',
+          )}
+        >
+          {nome}
+        </span>
+      )}
     </Link>
   );
 }
@@ -42,7 +51,7 @@ export function PublicLayout() {
         Pular para o conteúdo
       </a>
       {isDemoMode && (
-        <p className="bg-olive/90 px-4 py-1.5 text-center text-[0.72rem] font-medium tracking-wide text-text">
+        <p className="bg-olive/90 px-4 py-1.5 text-center text-[0.72rem] font-medium tracking-wide text-on-olive">
           Modo demonstrativo · itens, preços e modelos 3D fictícios
         </p>
       )}

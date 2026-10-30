@@ -2,6 +2,7 @@
 // Não representam produtos, preços ou informações reais de nenhum restaurante.
 import type { ArModel, Category, Product, QrCode, Restaurant } from '@/types/domain';
 import versoes from './assetVersions.json';
+import { brand } from '@/config/brand';
 
 /** Acrescenta o hash do conteúdo à URL (?v=...) para nunca servir um arquivo antigo do cache. */
 export function versioned(path: string): string {
@@ -11,7 +12,7 @@ export function versioned(path: string): string {
 
 export const DEMO_RESTAURANT_ID = '00000000-0000-4000-8000-000000000001';
 
-export const demoRestaurant: Restaurant = {
+const restauranteBase: Restaurant = {
   id: DEMO_RESTAURANT_ID,
   name: 'Restaurante Demonstrativo',
   slug: 'restaurante-demonstrativo',
@@ -38,6 +39,11 @@ export const demoRestaurant: Restaurant = {
   isActive: true,
   isDemo: true,
 };
+
+const marca = brand.demoRestaurant;
+export const demoRestaurant: Restaurant = marca
+  ? { ...restauranteBase, ...marca, info: { ...restauranteBase.info, ...marca.info } }
+  : restauranteBase;
 
 const cat = (id: number, name: string, slug: string, description: string): Category => ({
   id: `00000000-0000-4000-8000-0000000001${String(id).padStart(2, '0')}`,

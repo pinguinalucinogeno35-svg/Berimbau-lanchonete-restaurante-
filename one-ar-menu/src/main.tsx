@@ -7,7 +7,14 @@ import { createRouter } from '@/app/router';
 import '@fontsource/cormorant-garamond/latin-500.css';
 import '@fontsource/cormorant-garamond/latin-600.css';
 import '@fontsource-variable/dm-sans/opsz.css';
+import '@fontsource/cormorant-garamond/latin-700.css';
+import '@fontsource/montserrat/latin-400.css';
+import '@fontsource/montserrat/latin-500.css';
+import '@fontsource/montserrat/latin-600.css';
 import '@/styles/index.css';
+import { applyBrand } from '@/config/brand';
+
+applyBrand();
 
 const router = createRouter();
 

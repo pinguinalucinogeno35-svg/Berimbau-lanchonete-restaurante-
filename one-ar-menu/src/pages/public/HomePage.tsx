@@ -25,14 +25,17 @@ export default function HomePage() {
 
   return (
     <>
-      <section className="relative overflow-hidden border-b border-line">
+      <section className="hero relative overflow-hidden border-b border-line">
         {r?.coverUrl && (
-          <img
-            src={r.coverUrl}
-            alt=""
-            className="absolute inset-0 size-full object-cover opacity-35"
-            fetchPriority="high"
-          />
+          <>
+            <img
+              src={r.coverUrl}
+              alt=""
+              className="hero-cover absolute inset-0 size-full object-cover"
+              fetchPriority="high"
+            />
+            <div aria-hidden="true" className="hero-veil absolute inset-0" />
+          </>
         )}
         <div className="relative mx-auto grid max-w-6xl gap-10 px-5 pb-14 pt-12 md:grid-cols-[1.15fr_1fr] md:items-center md:pb-20 md:pt-20">
           <div className="reveal flex flex-col gap-5">

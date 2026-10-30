@@ -31,6 +31,37 @@ O `#66735C` original não tem contraste para texto pequeno; por isso o texto oli
 - Servidas pelo app via `@fontsource` (offline e sem terceiros).
 - Rótulos: classe `.eyebrow` (caixa alta, espaçamento largo, dourado).
 
+## Tema Berimbau Gourmet (versão de teste)
+
+Segundo tema pronto, com a identidade do Berimbau Gourmet tirada da biblioteca de marca (`../assets/tokens.css`,
+amostrada da proposta ONE; **confirmar com o manual oficial**). Fica em `:root[data-tema='berimbau']`
+(`src/styles/index.css`) e em `src/config/brand.ts`.
+
+| Token                 | Berimbau  | Papel                               |
+| --------------------- | --------- | ----------------------------------- |
+| `--one-bg`            | `#FCF6EF` | Creme, fundo geral                  |
+| `--one-bg-alt`        | `#FCEFE2` | Cartões                             |
+| `--one-accent`        | `#B25929` | Terracota: botões, rótulos, curva   |
+| `--one-accent-strong` | `#8F3F1F` | Terracota escuro: preços, destaques |
+| `--one-text`          | `#23160C` | Café: títulos e texto               |
+| `--one-text-muted`    | `#6B5546` | Sépia claro: texto secundário       |
+| `--one-olive`         | `#3A2E23` | Sépia: faixa do modo demonstrativo  |
+
+- Fontes: Cormorant Garamond 700 (títulos) e Montserrat 400/500/600 (texto), servidas pelo app.
+- Cantos 10/16/24 px; curva terracota da marca no canto do topo; capa com foto do centro histórico de Ilhéus.
+- Logo completo (`public/brand/berimbau/logo.webp`), ícones do app instalado e favicon da marca.
+- Os **produtos continuam demonstrativos** (faixa “Modo demonstrativo” e avisos nos modelos 3D). Endereço e
+  horários aparecem como “a confirmar”.
+
+### Como escolher o tema
+
+| Onde                         | Como                                                                         |
+| ---------------------------- | ---------------------------------------------------------------------------- |
+| Build (padrão do site)       | `VITE_BRAND=berimbau` ou `one` (o Netlify usa `berimbau`, em `netlify.toml`) |
+| No aparelho, sem novo deploy | Abrir com `?tema=berimbau` ou `?tema=one`; a escolha fica salva no aparelho  |
+
+Nome, cores e ícones do **app instalado** (manifesto) seguem o tema do build.
+
 ## Personalização por restaurante
 
 `restaurants.theme_settings` (editável em **/admin/configuracoes**):

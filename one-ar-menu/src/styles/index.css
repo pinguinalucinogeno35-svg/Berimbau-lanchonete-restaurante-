@@ -14,6 +14,7 @@
   --one-accent-strong: #d8c29c;
   --one-olive: #66735c;
   --one-olive-text: #9aa88e;
+  --one-on-olive: #f8f6f0;
   --one-text: #f8f6f0;
   --one-text-muted: #b9b6ac;
   --one-text-dark: #202521;
@@ -27,7 +28,37 @@
   --one-radius-lg: 14px;
   --one-ease: cubic-bezier(0.2, 0.7, 0.2, 1);
   --one-duration: 220ms;
+  --one-hero-cover-opacity: 0.35;
   color-scheme: dark;
+}
+
+/*
+ * Tema Berimbau Gourmet (versão de teste). Cores e fontes da biblioteca de marca
+ * (assets/tokens.css, amostradas da proposta ONE; confirmar com o manual da marca).
+ */
+:root[data-tema='berimbau'] {
+  --one-bg: #fcf6ef;
+  --one-bg-alt: #fcefe2;
+  --one-bg-raised: #f2e2cf;
+  --one-surface: #23160c;
+  --one-accent: #b25929;
+  --one-accent-strong: #8f3f1f;
+  --one-olive: #3a2e23;
+  --one-olive-text: #8f3f1f;
+  --one-on-olive: #fcf6ef;
+  --one-text: #23160c;
+  --one-text-muted: #6b5546;
+  --one-text-dark: #fcf6ef;
+  --one-line: rgb(35 22 12 / 0.12);
+  --one-danger: #a23b2a;
+  --one-success: #3f6b3a;
+  --one-font-display: 'Cormorant Garamond', Georgia, serif;
+  --one-font-body: 'Montserrat', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --one-radius-sm: 10px;
+  --one-radius: 16px;
+  --one-radius-lg: 24px;
+  --one-hero-cover-opacity: 1;
+  color-scheme: light;
 }
 
 @theme inline {
@@ -39,6 +70,7 @@
   --color-accent-strong: var(--one-accent-strong);
   --color-olive: var(--one-olive);
   --color-olive-text: var(--one-olive-text);
+  --color-on-olive: var(--one-on-olive);
   --color-text: var(--one-text);
   --color-muted: var(--one-text-muted);
   --color-ink: var(--one-text-dark);
@@ -139,6 +171,53 @@
 @keyframes one-shimmer {
   to {
     background-position: -200% 0;
+  }
+}
+
+/* Capa do topo: o véu mantém o texto legível sobre a foto em qualquer tema. */
+.hero-cover {
+  opacity: var(--one-hero-cover-opacity);
+}
+.hero-veil {
+  background: linear-gradient(
+    90deg,
+    var(--one-bg) 0%,
+    color-mix(in srgb, var(--one-bg) 86%, transparent) 45%,
+    color-mix(in srgb, var(--one-bg) 35%, transparent) 100%
+  );
+}
+@media (max-width: 767px) {
+  .hero-veil {
+    background: linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--one-bg) 72%, transparent) 0%,
+      color-mix(in srgb, var(--one-bg) 92%, transparent) 55%,
+      var(--one-bg) 100%
+    );
+  }
+}
+
+/* Berimbau: títulos em 700 e a curva terracota da marca no canto do topo. */
+:root[data-tema='berimbau'] {
+  h1,
+  h2,
+  h3 {
+    font-weight: 700;
+  }
+  .eyebrow {
+    letter-spacing: 0.14em;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: clamp(56px, 12vw, 150px);
+    height: clamp(120px, 24vw, 280px);
+    background: var(--one-accent);
+    -webkit-mask: url('/brand/berimbau/curva.svg') center / 100% 100% no-repeat;
+    mask: url('/brand/berimbau/curva.svg') center / 100% 100% no-repeat;
+    pointer-events: none;
   }
 }
 

@@ -6,6 +6,8 @@
 
 [build.environment]
   NODE_VERSION = "22"
+  # Versão de teste com a identidade do Berimbau Gourmet. Use ?tema=one para ver o tema neutro.
+  VITE_BRAND = "berimbau"
 
 [[redirects]]
   from = "/*"

@@ -193,6 +193,29 @@ test.describe('jornada pública (modo demonstrativo)', () => {
   });
 });
 
+test.describe('identidade visual', () => {
+  test('?tema=berimbau aplica a marca do Berimbau Gourmet e fica salvo; ?tema=one volta ao neutro', async ({
+    page,
+  }) => {
+    await page.goto('/?tema=berimbau');
+    await expect(page.locator('html')).toHaveAttribute('data-tema', 'berimbau');
+    await expect(page.getByRole('link', { name: 'Berimbau Gourmet, página inicial' })).toBeVisible();
+    await expect(
+      page.getByRole('heading', { level: 1, name: 'Sabores que contam histórias.' }),
+    ).toBeVisible();
+    // Produtos continuam marcados como demonstrativos.
+    await expect(page.getByText('Modo demonstrativo')).toBeVisible();
+    await expect(page.locator('body')).toHaveCSS('background-color', 'rgb(252, 246, 239)');
+
+    await page.goto('/cardapio');
+    await expect(page.locator('html')).toHaveAttribute('data-tema', 'berimbau');
+
+    await page.goto('/?tema=one');
+    await expect(page.locator('html')).toHaveAttribute('data-tema', 'one');
+    await expect(page.getByRole('link', { name: 'Restaurante Demonstrativo, página inicial' })).toBeVisible();
+  });
+});
+
 test.describe('painel administrativo', () => {
   test('rotas /admin exigem autenticação', async ({ page }) => {
     for (const rota of ['/admin', '/admin/produtos', '/admin/modelos-3d', '/admin/configuracoes']) {

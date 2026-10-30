@@ -2,7 +2,7 @@
   "name": "one-ar-menu",
   "private": true,
   "version": "0.1.0",
-  "description": "ONE AR Menu \u2014 card\u00e1pio gastron\u00f4mico com visualiza\u00e7\u00e3o 3D e realidade aumentada (ONE Studio Digital)",
+  "description": "ONE AR Menu — cardápio gastronômico com visualização 3D e realidade aumentada (ONE Studio Digital)",
   "type": "module",
   "engines": {
     "node": ">=20.19"
@@ -25,6 +25,7 @@
   "dependencies": {
     "@fontsource-variable/dm-sans": "^5.3.0",
     "@fontsource/cormorant-garamond": "^5.3.0",
+    "@fontsource/montserrat": "^5.3.0",
     "@google/model-viewer": "^4.4.0",
     "@supabase/supabase-js": "^2.118.0",
     "@tanstack/react-query": "^5.104.5",
