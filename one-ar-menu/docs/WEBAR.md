@@ -109,5 +109,6 @@ falha ao ativar AR, AR sem resposta (12 s) e retorno da AR.
 | Arquivo inexistente e corrompido                                              | ✔ automatizado                  |
 | Intent do Scene Viewer gerado com escala fixa                                 | ✔ automatizado                  |
 | Abertura real de AR e ampliação por pinça                                     | ✔ 1 celular real (26/10/2026)   |
-| Escala conferida com régua / matriz completa de aparelhos                     | ✘ **pendente: aparelho físico** |
+| Escala aprovada pelo cliente (medidas reais, prato a 35 cm)                   | ✔ 1 celular real (30/10/2026)   |
+| Escala medida com régua / matriz completa de aparelhos                        | ✘ **pendente: aparelho físico** |
 | Quick Look no iPhone (Safari e PWA instalada)                                 | ✘ **pendente: aparelho físico** |
