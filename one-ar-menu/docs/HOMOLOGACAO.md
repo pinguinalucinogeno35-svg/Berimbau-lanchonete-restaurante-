@@ -7,6 +7,7 @@ Preencha uma linha por aparelho.
 **26/10/2026 — segundo teste físico:** a AR abriu com o cheeseburger cheddar (modelo de 120 mil triângulos, 4,3 MB, prato de 20 cm).
 **27/10/2026 — retorno do cliente:** “ainda está em proporções menores”; medidas de referência ampliadas (ver WEBAR.md). Conferir com a régua de `/calibrar`.
 **30/10/2026 — teste físico na Vercel:** tema Berimbau Gourmet apareceu no celular do cliente (berimbau-cardapio-ar.vercel.app).
+**30/10/2026 — teste físico:** com a distância inicial de 35 cm, o prato apareceu perto, com tamanho aprovado pelo cliente. Como o ajuste só vale no WebXR, o aparelho do cliente abre a AR dentro do Chrome.
 Ainda falta registrar aparelho, sistema, modo de AR (WebXR/Scene Viewer/Quick Look), apoio na mesa e escala.
 
 ## Matriz de aparelhos
@@ -46,4 +47,4 @@ Ainda falta registrar aparelho, sistema, modo de AR (WebXR/Scene Viewer/Quick Lo
 
 | #   | Aparelho | Passo | O que aconteceu | Captura | Status |
 | --- | -------- | ----- | --------------- | ------- | ------ |
-| 1   | celular do cliente (modelo a informar) | 4 — escala | Cheeseburger com prato virtual de 30 cm, “Travar tamanho real”, apoiado na mesa, ficou **menor** que um prato raso real (26–28 cm). Arquivo conferido: 30 cm. Depois o cliente observou que o prato virtual ficou **mais distante** que o real: a diferença é de perspectiva, não de escala. Orientação de posicionamento reforçada na página de experiência. | — | refazer lado a lado, à mesma distância (30/10/2026) |
+| 1   | celular do cliente (modelo a informar) | 4 — escala | Cheeseburger com prato virtual de 30 cm, “Travar tamanho real”, apoiado na mesa, ficou **menor** que um prato raso real (26–28 cm). Arquivo conferido: 30 cm. Depois o cliente observou que o prato virtual ficou **mais distante** que o real: a diferença é de perspectiva, não de escala. Orientação de posicionamento reforçada na página de experiência. Prato passou a nascer a 35 cm da câmera (WebXR); confirmado no celular do cliente. | — | resolvido (30/10/2026) |
