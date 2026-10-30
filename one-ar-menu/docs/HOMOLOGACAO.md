@@ -46,4 +46,4 @@ Ainda falta registrar aparelho, sistema, modo de AR (WebXR/Scene Viewer/Quick Lo
 
 | #   | Aparelho | Passo | O que aconteceu | Captura | Status |
 | --- | -------- | ----- | --------------- | ------- | ------ |
-|     |          |       |                 |         |        |
+| 1   | celular do cliente (modelo a informar) | 4 — escala | Cheeseburger com prato virtual de 30 cm, “Travar tamanho real”, apoiado na mesa, ficou **menor** que um prato raso real (26–28 cm). Arquivo conferido: 30 cm. Indica erro de escala da AR no aparelho. | a enviar | em investigação (30/10/2026) |
