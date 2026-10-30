@@ -104,7 +104,7 @@ test.describe('jornada pública (modo demonstrativo)', () => {
     });
     // Na experiência o padrão é ampliar com pinça (abre no tamanho real, ar-scale="auto").
     await expect(page.locator('model-viewer')).toHaveAttribute('ar-scale', 'auto');
-    await expect(page.getByText(/30 × 30 × 17,9 cm/)).toBeVisible();
+    await expect(page.getByText(/26 × 26 × 15,5 cm/)).toBeVisible();
   });
 
   test('régua de calibração de 30 cm carrega em escala fixa', async ({ page }) => {

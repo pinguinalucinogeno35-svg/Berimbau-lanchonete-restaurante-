@@ -33,7 +33,7 @@ insert into public.products
 values
   ('00000000-0000-4000-8000-000000000201', '00000000-0000-4000-8000-000000000001', '00000000-0000-4000-8000-000000000101',
    'Coxinha demonstrativa', 'coxinha-demonstrativa', 'Item fictício usado para demonstrar 3D e AR. O modelo é procedural e não representa o salgado real.',
-   '{Ingredientes demonstrativos}', '{glúten,leite}', 900, '1 unidade (medidas do modelo: aprox. 10,7 × 13,9 cm)', true, true, true, 0),
+   '{Ingredientes demonstrativos}', '{glúten,leite}', 900, '1 unidade (medidas do modelo: aprox. 8,2 × 10,7 cm)', true, true, true, 0),
   ('00000000-0000-4000-8000-000000000202', '00000000-0000-4000-8000-000000000001', '00000000-0000-4000-8000-000000000101',
    'Empada demonstrativa', 'empada-demonstrativa', 'Item fictício sem modelo 3D publicado.',
    '{Ingredientes demonstrativos}', '{glúten,ovo}', 1000, '1 unidade', true, true, false, 1),
@@ -45,17 +45,17 @@ values
    '{Arroz,"Ingredientes demonstrativos"}', '{leite}', 6200, 'Serve 1 pessoa', false, true, false, 3),
   ('00000000-0000-4000-8000-000000000205', '00000000-0000-4000-8000-000000000001', '00000000-0000-4000-8000-000000000103',
    'Hambúrguer demonstrativo', 'hamburguer-demonstrativo', 'Item fictício com modelo 3D procedural.',
-   '{Pão,Carne,Queijo,Folhas}', '{glúten,leite,gergelim}', 4200, '1 unidade (medidas do modelo: aprox. 15 × 10,2 cm)', true, true, true, 4),
+   '{Pão,Carne,Queijo,Folhas}', '{glúten,leite,gergelim}', 4200, '1 unidade (medidas do modelo: aprox. 12,6 × 8,6 cm)', true, true, true, 4),
   ('00000000-0000-4000-8000-000000000206', '00000000-0000-4000-8000-000000000001', '00000000-0000-4000-8000-000000000104',
    'Sobremesa demonstrativa', 'sobremesa-demonstrativa', 'Item fictício com modelo 3D procedural.',
-   '{"Ingredientes demonstrativos"}', '{glúten,leite,ovo}', 2600, '1 unidade (medidas do modelo: aprox. 10,5 × 12 cm)', true, true, false, 5),
+   '{"Ingredientes demonstrativos"}', '{glúten,leite,ovo}', 2600, '1 unidade (medidas do modelo: aprox. 8,1 × 9,2 cm)', true, true, false, 5),
   ('00000000-0000-4000-8000-000000000207', '00000000-0000-4000-8000-000000000001', '00000000-0000-4000-8000-000000000105',
    'Bebida demonstrativa', 'bebida-demonstrativa', 'Item fictício de bebida.',
    '{"Ingredientes demonstrativos"}', '{}', 1200, '300 ml', true, true, false, 6),
   ('00000000-0000-4000-8000-000000000209', '00000000-0000-4000-8000-000000000001', '00000000-0000-4000-8000-000000000103',
    'Cheeseburger cheddar demonstrativo', 'cheeseburger-cheddar-demonstrativo',
    'Hambúrguer triplo com cheddar derretido, servido no prato. Modelo 3D gerado por IA e otimizado para celular: é ilustrativo e não representa o produto real do restaurante.',
-   '{Pão,Carne,"Queijo cheddar"}', '{glúten,leite}', 3800, '1 unidade (modelo com prato raso de 30 cm; hambúrguer de aprox. 17 cm)', true, true, true, 5),
+   '{Pão,Carne,"Queijo cheddar"}', '{glúten,leite}', 3800, '1 unidade (modelo com prato raso de 26 cm; hambúrguer de aprox. 15 cm)', true, true, true, 5),
   ('00000000-0000-4000-8000-000000000208', '00000000-0000-4000-8000-000000000001', '00000000-0000-4000-8000-000000000105',
    'Produto não publicado', 'produto-nao-publicado', 'Rascunho: não deve aparecer no cardápio público.',
    '{}', '{}', 100, '', true, false, false, 7)
@@ -72,13 +72,13 @@ insert into public.product_ar_models
   (id, restaurant_id, product_id, glb_path, poster_path, width_cm, height_cm, depth_cm, scale_verified, scale_locked, approval_status, version, published_at)
 values
   ('00000000-0000-4000-8000-000000000301', '00000000-0000-4000-8000-000000000001', '00000000-0000-4000-8000-000000000201',
-   '/demo/models/coxinha-demonstrativa.glb', '/demo/posters/coxinha-demonstrativa.webp', 10.7, 13.9, 10.7, false, true, 'approved', 1, now()),
+   '/demo/models/coxinha-demonstrativa.glb', '/demo/posters/coxinha-demonstrativa.webp', 8.2, 10.7, 8.2, false, true, 'approved', 1, now()),
   ('00000000-0000-4000-8000-000000000302', '00000000-0000-4000-8000-000000000001', '00000000-0000-4000-8000-000000000205',
-   '/demo/models/hamburguer-demonstrativo.glb', '/demo/posters/hamburguer-demonstrativo.webp', 15, 10.2, 15, false, true, 'approved', 1, now()),
+   '/demo/models/hamburguer-demonstrativo.glb', '/demo/posters/hamburguer-demonstrativo.webp', 12.6, 8.6, 12.6, false, true, 'approved', 1, now()),
   ('00000000-0000-4000-8000-000000000303', '00000000-0000-4000-8000-000000000001', '00000000-0000-4000-8000-000000000206',
-   '/demo/models/sobremesa-demonstrativa.glb', '/demo/posters/sobremesa-demonstrativa.webp', 10.5, 12, 10.5, false, true, 'approved', 1, now()),
+   '/demo/models/sobremesa-demonstrativa.glb', '/demo/posters/sobremesa-demonstrativa.webp', 8.1, 9.2, 8.1, false, true, 'approved', 1, now()),
   ('00000000-0000-4000-8000-000000000305', '00000000-0000-4000-8000-000000000001', '00000000-0000-4000-8000-000000000209',
-   '/demo/models/cheeseburger-cheddar.glb', '/demo/posters/cheeseburger-cheddar.webp', 30, 17.9, 30, false, true, 'approved', 1, now()),
+   '/demo/models/cheeseburger-cheddar.glb', '/demo/posters/cheeseburger-cheddar.webp', 26, 15.5, 26, false, true, 'approved', 1, now()),
   -- Versão em revisão: NÃO pode aparecer no cardápio público.
   ('00000000-0000-4000-8000-000000000304', '00000000-0000-4000-8000-000000000001', '00000000-0000-4000-8000-000000000202',
    '/demo/models/coxinha-demonstrativa.glb', null, 6.0, 4.0, 6.0, false, true, 'ready_for_review', 1, null)

@@ -81,6 +81,11 @@ prato aparecia **longe da câmera**. No WebXR, o `<model-viewer>` 4.4 coloca o o
 `<model-viewer>` mudar esse trecho, o build falha. Scene Viewer e Quick Look decidem a distância sozinhos (não há
 parâmetro); neles, o cliente arrasta o prato para perto. Os passos da página de experiência orientam isso.
 
+**Volta às medidas reais (30/10/2026):** com o prato nascendo perto, o cliente pediu os tamanhos reais. A
+“segunda ampliação” foi desfeita: coxinha 8,2 × 10,7 cm; hambúrguer 12,6 × 8,6 cm; sobremesa 8,1 × 9,2 cm;
+cheeseburger em prato raso de 26 cm (arquivo de 26 cm restaurado do histórico, sem reprocessar). Conclusão: a
+sensação de “pequeno” vinha da distância de 1 m, não das medidas.
+
 Percepção: objetos em tamanho real costumam parecer menores na tela do que ao vivo, principalmente com o celular
 alto. A régua é o tira-teima objetivo.
 

@@ -8,6 +8,7 @@ Preencha uma linha por aparelho.
 **27/10/2026 — retorno do cliente:** “ainda está em proporções menores”; medidas de referência ampliadas (ver WEBAR.md). Conferir com a régua de `/calibrar`.
 **30/10/2026 — teste físico na Vercel:** tema Berimbau Gourmet apareceu no celular do cliente (berimbau-cardapio-ar.vercel.app).
 **30/10/2026 — teste físico:** com a distância inicial de 35 cm, o prato apareceu perto, com tamanho aprovado pelo cliente. Como o ajuste só vale no WebXR, o aparelho do cliente abre a AR dentro do Chrome.
+**30/10/2026 — decisão do cliente:** com o prato perto, voltar às medidas reais de porção (cheeseburger em prato de 26 cm).
 Ainda falta registrar aparelho, sistema, modo de AR (WebXR/Scene Viewer/Quick Look), apoio na mesa e escala.
 
 ## Matriz de aparelhos
