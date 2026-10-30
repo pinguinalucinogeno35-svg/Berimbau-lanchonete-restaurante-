@@ -77,7 +77,7 @@ referência demonstrativa: com produto real, use a medida do prato servido.
 **Distância inicial (30/10/2026, teste físico):** com o prato lado a lado, o cliente achou o tamanho certo, mas o
 prato aparecia **longe da câmera**. No WebXR, o `<model-viewer>` 4.4 coloca o objeto a
 `max(1 m, 2 × raio)` à frente da câmera e só depois baixa até a mesa, então o prato caía a ~1 m. O plugin
-`arPlacementDistance` (`vite.config.ts`) reduz o mínimo para **0,5 m** no build; se uma atualização do
+`arPlacementDistance` (`vite.config.ts`) faz o prato nascer a **35 cm** da câmera (pedido do cliente; 1,2 × raio se o objeto for maior) no build; se uma atualização do
 `<model-viewer>` mudar esse trecho, o build falha. Scene Viewer e Quick Look decidem a distância sozinhos (não há
 parâmetro); neles, o cliente arrasta o prato para perto. Os passos da página de experiência orientam isso.
 

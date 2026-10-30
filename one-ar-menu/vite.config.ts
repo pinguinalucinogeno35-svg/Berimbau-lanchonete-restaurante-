@@ -6,9 +6,11 @@ import tailwindcss from '@tailwindcss/vite';
 import { VitePWA } from 'vite-plugin-pwa';
 
 // Distância inicial do prato na AR (WebXR do <model-viewer>). O original coloca o objeto a no mínimo 1 m da câmera,
-// o que deixa um prato de mesa longe e aparentemente pequeno. Aqui o mínimo passa a 0,5 m; depois a altura é
+// o que deixa um prato de mesa longe e aparentemente pequeno. Aqui o prato nasce a 35 cm (pedido do cliente), ou um
+// pouco além do raio do objeto se ele for maior, para a câmera nunca ficar dentro dele; depois a altura é
 // ajustada à superfície da mesa e o cliente ainda pode arrastar. Não afeta Scene Viewer nem Quick Look.
-export const AR_DISTANCIA_INICIAL_M = 0.5;
+export const AR_DISTANCIA_INICIAL_M = 0.35;
+const AR_FOLGA_RAIO = 1.2;
 const ORIGINAL_DISTANCIA = 'Math.max(1, 2 * scene.boundingSphere.radius)';
 
 export function arPlacementDistance(): Plugin {
@@ -22,7 +24,7 @@ export function arPlacementDistance(): Plugin {
         this.error('model-viewer: trecho da distância inicial da AR não encontrado; revise o ajuste.');
       return code.replace(
         ORIGINAL_DISTANCIA,
-        `Math.max(${AR_DISTANCIA_INICIAL_M}, 2 * scene.boundingSphere.radius)`,
+        `Math.max(${AR_DISTANCIA_INICIAL_M}, ${AR_FOLGA_RAIO} * scene.boundingSphere.radius)`,
       );
     },
   };
