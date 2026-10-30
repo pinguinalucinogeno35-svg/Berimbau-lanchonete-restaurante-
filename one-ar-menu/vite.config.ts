@@ -1,9 +1,32 @@
 /// <reference types="vitest/config" />
 import { fileURLToPath, URL } from 'node:url';
-import { defineConfig, loadEnv } from 'vite';
+import { defineConfig, loadEnv, type Plugin } from 'vite';
 import react from '@vitejs/plugin-react';
 import tailwindcss from '@tailwindcss/vite';
 import { VitePWA } from 'vite-plugin-pwa';
+
+// Distância inicial do prato na AR (WebXR do <model-viewer>). O original coloca o objeto a no mínimo 1 m da câmera,
+// o que deixa um prato de mesa longe e aparentemente pequeno. Aqui o mínimo passa a 0,5 m; depois a altura é
+// ajustada à superfície da mesa e o cliente ainda pode arrastar. Não afeta Scene Viewer nem Quick Look.
+export const AR_DISTANCIA_INICIAL_M = 0.5;
+const ORIGINAL_DISTANCIA = 'Math.max(1, 2 * scene.boundingSphere.radius)';
+
+export function arPlacementDistance(): Plugin {
+  return {
+    name: 'one-ar-distancia-inicial',
+    enforce: 'pre',
+    transform(code, id) {
+      if (!/@google[\\/]model-viewer[\\/]lib[\\/]three-components[\\/]ARRenderer\.js$/.test(id)) return;
+      // Se uma atualização do model-viewer mudar esse trecho, o build falha em vez de perder o ajuste em silêncio.
+      if (!code.includes(ORIGINAL_DISTANCIA))
+        this.error('model-viewer: trecho da distância inicial da AR não encontrado; revise o ajuste.');
+      return code.replace(
+        ORIGINAL_DISTANCIA,
+        `Math.max(${AR_DISTANCIA_INICIAL_M}, 2 * scene.boundingSphere.radius)`,
+      );
+    },
+  };
+}
 
 // Manifesto do app instalado conforme a marca do build (VITE_BRAND). O tema visual em si pode ser trocado
 // em tempo de execução com ?tema=; nome e ícone do app instalado seguem o build.
@@ -23,6 +46,7 @@ export default defineConfig(({ mode }) => {
   const m = MANIFESTOS[marca];
   return {
     plugins: [
+      arPlacementDistance(),
       react(),
       tailwindcss(),
       VitePWA({
